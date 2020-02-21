@@ -1,5 +1,6 @@
 obj/linux64/Release/src/main.o: \
- /home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project1/src/main.cpp \
+ /home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project0-ofxcv-of-pure/src/main.cpp \
+ /home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project0-ofxcv-of-pure/src/ofApp.h \
  /home/locua/of_v20200211_linux64gcc6_release/libs/openFrameworks/ofMain.h \
  /home/locua/of_v20200211_linux64gcc6_release/libs/openFrameworks/utils/ofConstants.h \
  /home/locua/of_v20200211_linux64gcc6_release/libs/tess2/include/tesselator.h \
@@ -550,16 +551,14 @@ obj/linux64/Release/src/main.o: \
  /home/locua/of_v20200211_linux64gcc6_release/libs/openFrameworks/3d/of3dUtils.h \
  /home/locua/of_v20200211_linux64gcc6_release/libs/openFrameworks/3d/ofCamera.h \
  /home/locua/of_v20200211_linux64gcc6_release/libs/openFrameworks/3d/ofEasyCam.h \
- /home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project1/src/ofApp.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxOpenCv.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvConstants.h \
- /usr/local/include/opencv4/opencv2/core/version.hpp \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/src/ofxCv.h \
  /usr/local/include/opencv4/opencv2/opencv.hpp \
  /usr/local/include/opencv4/opencv2/opencv_modules.hpp \
  /usr/local/include/opencv4/opencv2/core.hpp \
  /usr/local/include/opencv4/opencv2/core/cvdef.h \
  /usr/local/include/opencv4/opencv2/core/hal/interface.h \
  /usr/local/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+ /usr/local/include/opencv4/opencv2/core/version.hpp \
  /usr/local/include/opencv4/opencv2/core/base.hpp \
  /usr/local/include/opencv4/opencv2/core/cvstd.hpp \
  /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
@@ -678,20 +677,11 @@ obj/linux64/Release/src/main.o: \
  /usr/local/include/opencv4/opencv2/videostab/deblurring.hpp \
  /usr/local/include/opencv4/opencv2/videostab/wobble_suppression.hpp \
  /usr/local/include/opencv4/opencv2/videostab/ring_buffer.hpp \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Utilities.h \
  /usr/local/include/opencv4/opencv2/imgproc/imgproc_c.h \
  /usr/local/include/opencv4/opencv2/imgproc/types_c.h \
  /usr/local/include/opencv4/opencv2/core/core_c.h \
  /usr/local/include/opencv4/opencv2/core/types_c.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvImage.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvGrayscaleImage.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvBlob.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvColorImage.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvFloatImage.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvShortImage.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvContourFinder.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvHaarFinder.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/src/ofxCv.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Utilities.h \
  /usr/local/include/opencv4/opencv2/calib3d/calib3d_c.h \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Wrappers.h \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/CLD/include/CLD/imatrix.h \
@@ -707,7 +697,21 @@ obj/linux64/Release/src/main.o: \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/RunningBackground.h \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Flow.h \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ObjectFinder.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Kalman.h
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Kalman.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxGui.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxToggle.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxBaseGui.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxSlider.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxInputField.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxGuiUtils.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxSliderGroup.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxGuiGroup.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxButton.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxLabel.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxColorPicker.h \
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxPanel.h
+
+/home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project0-ofxcv-of-pure/src/ofApp.h:
 
 /home/locua/of_v20200211_linux64gcc6_release/libs/openFrameworks/ofMain.h:
 
@@ -1841,13 +1845,7 @@ obj/linux64/Release/src/main.o: \
 
 /home/locua/of_v20200211_linux64gcc6_release/libs/openFrameworks/3d/ofEasyCam.h:
 
-/home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project1/src/ofApp.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxOpenCv.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvConstants.h:
-
-/usr/local/include/opencv4/opencv2/core/version.hpp:
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/src/ofxCv.h:
 
 /usr/local/include/opencv4/opencv2/opencv.hpp:
 
@@ -1860,6 +1858,8 @@ obj/linux64/Release/src/main.o: \
 /usr/local/include/opencv4/opencv2/core/hal/interface.h:
 
 /usr/local/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
+
+/usr/local/include/opencv4/opencv2/core/version.hpp:
 
 /usr/local/include/opencv4/opencv2/core/base.hpp:
 
@@ -2097,6 +2097,8 @@ obj/linux64/Release/src/main.o: \
 
 /usr/local/include/opencv4/opencv2/videostab/ring_buffer.hpp:
 
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Utilities.h:
+
 /usr/local/include/opencv4/opencv2/imgproc/imgproc_c.h:
 
 /usr/local/include/opencv4/opencv2/imgproc/types_c.h:
@@ -2104,26 +2106,6 @@ obj/linux64/Release/src/main.o: \
 /usr/local/include/opencv4/opencv2/core/core_c.h:
 
 /usr/local/include/opencv4/opencv2/core/types_c.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvImage.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvGrayscaleImage.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvBlob.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvColorImage.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvFloatImage.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvShortImage.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvContourFinder.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxOpenCv/src/ofxCvHaarFinder.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/src/ofxCv.h:
-
-/home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Utilities.h:
 
 /usr/local/include/opencv4/opencv2/calib3d/calib3d_c.h:
 
@@ -2156,3 +2138,27 @@ obj/linux64/Release/src/main.o: \
 /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ObjectFinder.h:
 
 /home/locua/of_v20200211_linux64gcc6_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Kalman.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxGui.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxToggle.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxBaseGui.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxSlider.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxInputField.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxGuiUtils.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxSliderGroup.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxGuiGroup.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxButton.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxLabel.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxColorPicker.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxPanel.h:
