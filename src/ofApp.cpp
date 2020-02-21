@@ -3,15 +3,19 @@
 using namespace ofxCv;
 using namespace cv;
 
+//--------------------------------------------------------------
 void ofApp::setup() {
   // camera and window setup
   int wwidth = 1920;
   int wheight = 1080;
   ofSetWindowShape(wwidth, wheight);
   cam.setup(640, 480);
+
   //contourFinder.setInvert(true); // find black instead of white
   // initialise gui
+
   gui.setup();
+
   // Initialise gui and parameters
   for(int i = 0; i < num_colours; i++){
     ofParameter<float> t;
@@ -29,6 +33,7 @@ void ofApp::setup() {
   }
 }
 
+//--------------------------------------------------------------
 void ofApp::update() {
     cam.update();
     if(cam.isFrameNew()) {
@@ -65,8 +70,10 @@ void ofApp::draw() {
     }
     ofPopMatrix();
     //cout << targetColours.size() << endl;
+    projector.draw();
 }
 
+//--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
     for(int i = 0; i < num_colours; i++) {
       if(changeColours[i]==true) targetColours[i]=cam.getPixels().getColor(x, y);

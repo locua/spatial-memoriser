@@ -15,7 +15,6 @@ public:
     ofxCv::ContourFinder contourFinder2;
     ofColor targetColor1;
     ofColor targetColor2;
-    ofxPanel gui;
     ofParameter<float> threshold1;
     ofParameter<float> threshold2;
     ofParameter<bool> trackHs1;
@@ -27,4 +26,9 @@ public:
   vector<ofParameter<bool>> changeColours;
   vector<ofxCv::ContourFinder> contourFinders;
   int num_colours = 5;
+
+
+  ofxPanel gui;
+  ofxPanel projector;
+
 };
