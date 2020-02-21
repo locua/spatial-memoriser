@@ -10,12 +10,21 @@ public:
     void update();
     void draw();
     void mousePressed(int x, int y, int button);
-    
     ofVideoGrabber cam;
-    ofxCv::ContourFinder contourFinder;
-    ofColor targetColor;
-    
+    ofxCv::ContourFinder contourFinder1;
+    ofxCv::ContourFinder contourFinder2;
+    ofColor targetColor1;
+    ofColor targetColor2;
     ofxPanel gui;
-    ofParameter<float> threshold;
-    ofParameter<bool> trackHs;
+    ofParameter<float> threshold1;
+    ofParameter<float> threshold2;
+    ofParameter<bool> trackHs1;
+    ofParameter<bool> trackHs2;
+
+  vector<ofColor> targetColours;
+  vector<ofParameter<float>> thresholds;
+  vector<ofParameter<bool>> trackHues;
+  vector<ofParameter<bool>> changeColours;
+  vector<ofxCv::ContourFinder> contourFinders;
+  int num_colours = 5;
 };

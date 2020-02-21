@@ -1,1 +1,2 @@
-make -j7 && make RunRelease
+make -j8 && make RunRelease
+
