@@ -22,15 +22,15 @@ public:
     ofParameter<bool> trackHs1;
     ofParameter<bool> trackHs2;
 
-  vector<ofColor> targetColours;
-  vector<ofParameter<float>> thresholds;
-  vector<ofParameter<bool>> trackHues;
-  vector<ofParameter<bool>> changeColours;
-  vector<ofxCv::ContourFinder> contourFinders;
-  int num_colours = 5;
+    vector<ofColor> targetColours;
+    vector<ofParameter<float>> thresholds;
+    vector<ofParameter<bool>> trackHues;
+    vector<ofParameter<bool>> changeColours;
+    vector<ofxCv::ContourFinder> contourFinders;
+    int num_colours = 5;
 
 
-  ofxPanel gui;
-  shared_ptr<Projector> projector;
+    ofxPanel gui;
+    shared_ptr<Projector> projector;
 
 };
