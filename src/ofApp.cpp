@@ -12,11 +12,16 @@ ofApp::~ofApp(){
 void ofApp::setup() {
   cam.listDevices();
   // camera and window setup
+  int camId = 0;
   int wwidth = 1920;
   int wheight = 1080;
   ofSetWindowShape(wwidth, wheight);
-  cam.setDeviceID(2);
-  cam.setup(1920, 1080);
+  cam.setDeviceID(camId);
+  if(camId==2){
+    cam.setup(1920, 1080);
+  } else if(camId==0){
+    cam.setup(640, 480);
+  }
   //contourFinder.setInvert(true); // find black instead of white
   // initialise gui
 
