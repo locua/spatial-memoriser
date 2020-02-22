@@ -42,6 +42,7 @@ void ofApp::setup() {
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), false));
         gui.add(changeColours[i].set("Change colour "+to_string(i), false));
     }
+
 }
 
 //--------------------------------------------------------------
@@ -85,6 +86,8 @@ void ofApp::draw() {
 
     // Debugging
     //cout << targetColours.size() << endl;
+
+    ofDrawCircle(test1, test2, 200, 300);
 }
 
 //--------------------------------------------------------------

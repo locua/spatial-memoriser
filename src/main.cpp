@@ -2,6 +2,7 @@
 #include "Projector.h"
 #include "ofAppGLFWWindow.h"
 #include "ofMain.h"
+#include "State.h"
 
 int main() {
     //	ofSetupOpenGL(640, 480, OF_WINDOW);
@@ -21,6 +22,10 @@ int main() {
     shared_ptr<ofApp> mainApp(new ofApp);
     shared_ptr<Projector> projectorApp(new Projector);
     mainApp->projector = projectorApp;
+
+    shared_ptr<State> sharedState(new State);
+    mainApp->sharedState = sharedState;
+    projectorApp->sharedState = sharedState;
 
     ofRunApp(projectorWindow, projectorApp);
     ofRunApp(mainWindow, mainApp);
