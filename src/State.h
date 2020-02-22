@@ -3,7 +3,7 @@
 
 #include "ofMain.h"
 class State {
-public: 
+public:
     State(){
         cout << "State Constructor" << endl;
         test1 = 400;
@@ -15,4 +15,4 @@ public:
 
 };
 
-#endif 
+#endif
