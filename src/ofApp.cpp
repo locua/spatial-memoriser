@@ -60,6 +60,7 @@ void ofApp::update() {
     }
 }
 
+//--------------------------------------------------------------
 void ofApp::draw() {
     ofSetColor(255);
     // Draw camera
@@ -83,11 +84,13 @@ void ofApp::draw() {
         ofDrawRectangle(0, 0, 64, 64);
     }
     ofPopMatrix();
-
     // Debugging
     //cout << targetColours.size() << endl;
 
-    ofDrawCircle(test1, test2, 200, 300);
+    //ofSetColor(200);
+    //ofDrawCircle(sharedState->test1,sharedState->test1, 100, 100);
+    //sharedState->test1+=(int)ofRandom(-2, 2);
+    //sharedState->test2+=(int)ofRandom(-2, 2);
 }
 
 //--------------------------------------------------------------
@@ -96,3 +99,8 @@ void ofApp::mousePressed(int x, int y, int button) {
         if(changeColours[i]==true) targetColours[i]=cam.getPixels().getColor(x, y);
     }
 }
+
+//--------------------------------------------------------------
+
+
+//--------------------------------------------------------------

@@ -37,4 +37,5 @@ public:
     // Shared state
     shared_ptr<State> sharedState;
     // Position variable
+    ofVec2f point;
 };

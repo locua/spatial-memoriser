@@ -1,4 +1,3 @@
 * Spatial memoriser
 
-#+ATTR_ORG: :width 600
 [[file:screenshot1.jpg]]

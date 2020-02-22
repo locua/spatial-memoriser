@@ -16,6 +16,7 @@ class Projector: public ofBaseApp {
     float yp1;
 
     shared_ptr<State> sharedState;
+    ofFbo fbo;
 
 };
 

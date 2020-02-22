@@ -7,16 +7,24 @@ void Projector::setup(){
     bFullscreen	= 0;
     xp1=400;
     yp1=500;
+    // frame buffer thing
+    fbo.allocate(1920, 1080, GL_RGBA);
 }
 
 //--------------------------------------------------------------
 void Projector::update(){
+    fbo.begin();
+    ofSetColor(255,255,255, alpha);
+    ofDrawRectangle(100,100,400,400);
+    fbo.end();
 
 }
 
 //--------------------------------------------------------------
 void Projector::draw(){
-    ofDrawCircle(500,500, 100, 100);
+
+
+    fbo.draw(0,0);
 }
 
 //--------------------------------------------------------------
