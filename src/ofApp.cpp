@@ -3,14 +3,20 @@
 using namespace ofxCv;
 using namespace cv;
 
+// Destructor
+ofApp::~ofApp(){
+  cam.close();
+}
+
 //--------------------------------------------------------------
 void ofApp::setup() {
+  cam.listDevices();
   // camera and window setup
   int wwidth = 1920;
   int wheight = 1080;
   ofSetWindowShape(wwidth, wheight);
-  cam.setup(640, 480);
-
+  cam.setDeviceID(2);
+  cam.setup(1920, 1080);
   //contourFinder.setInvert(true); // find black instead of white
   // initialise gui
 
@@ -35,15 +41,17 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    cam.update();
-    if(cam.isFrameNew()) {
-      // Loop for number of colours and track target colours
-      for(int i = 0; i < num_colours; i++){
-        contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
-        contourFinders[i].setThreshold(thresholds[i]);
-        contourFinders[i].findContours(cam);
-      }
+  // update camera
+  cam.update();
+  // check new frame
+  if(cam.isFrameNew()) {
+    // Loop for number of colours and track target colours
+    for(int i = 0; i < num_colours; i++){
+      contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
+      contourFinders[i].setThreshold(thresholds[i]);
+      contourFinders[i].findContours(cam);
     }
+  }
 }
 
 void ofApp::draw() {
@@ -69,8 +77,10 @@ void ofApp::draw() {
       ofDrawRectangle(0, 0, 64, 64);
     }
     ofPopMatrix();
+
+    // Debugging
     //cout << targetColours.size() << endl;
-    projector.draw();
+    //cout << cam.listDevices() << endl;
 }
 
 //--------------------------------------------------------------

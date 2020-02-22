@@ -709,7 +709,8 @@ obj/linux64/Release/src/main.o: \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxButton.h \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxLabel.h \
  /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxColorPicker.h \
- /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxPanel.h
+ /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxPanel.h \
+ /home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project0-ofxcv-of-pure/src/Projector.h
 
 /home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project0-ofxcv-of-pure/src/ofApp.h:
 
@@ -2162,3 +2163,5 @@ obj/linux64/Release/src/main.o: \
 /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxColorPicker.h:
 
 /home/locua/of_v20200211_linux64gcc6_release/addons/ofxGui/src/ofxPanel.h:
+
+/home/locua/of_v20200211_linux64gcc6_release/apps/myApps/project0-ofxcv-of-pure/src/Projector.h:

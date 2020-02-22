@@ -3,9 +3,11 @@
 #include "ofMain.h"
 #include "ofxCv.h"
 #include "ofxGui.h"
+#include "Projector.h"
 
 class ofApp : public ofBaseApp {
 public:
+  ~ofApp();
     void setup();
     void update();
     void draw();
@@ -29,6 +31,6 @@ public:
 
 
   ofxPanel gui;
-  ofxPanel projector;
+  shared_ptr<Projector> projector;
 
 };
