@@ -7,19 +7,29 @@ void Projector::setup(){
     bFullscreen	= 0;
     xp1=400;
     yp1=500;
+    // ofTexture version
+    //pMesh.setMode(OF_PRIMITIVE_POINTS);
+    //pMesh.addVertex(ofPoint(0,0,0));
+    //pMesh.addVertex(ofPoint(0,1080,0));
+    //pMesh.addVertex(ofPoint(1920,800,0));
+    //pMesh.addVertex(ofPoint(1920,0,0));
     // frame buffer thing
-    fbo.allocate(1920, 1080, GL_RGBA);
+    //ofDisableArbTex();
+    fbo.allocate(1000, 1080, GL_RGBA);
     fbo.begin();
-    ofClear(255,255,255, 0);
+    ofClear(255,255,255, 1);
     fbo.end();
+
+    //ofEnableDepthTest();
+
+    ofLoadImage(pTex, "../screenshot1.jpg");
 }
 
 //--------------------------------------------------------------
 void Projector::update(){
-
     fbo.begin();
-    ofBackground(0,0);
 
+    ofBackground(0,0);
     for(int i = 0; i < sharedState->num_colours; i++){
         boundingRects = sharedState->contourFinders[i].getBoundingRects();
         for(unsigned int j = 0; j < boundingRects.size(); j++){
@@ -34,7 +44,16 @@ void Projector::update(){
 //--------------------------------------------------------------
 void Projector::draw(){
 
-    fbo.draw(0,0);
+    //fbo.getTextureReference().bind();
+    fbo.draw(100,100, 1000, 900);
+    //fbo.bind();
+    //pTex.draw(100, 100, 1000, 900);
+    //pMesh.draw();
+    //fbo.unbind();
+    //fbo.getTextureReference().unbind();
+
+    ofDrawRectangle(sharedState->v1.x, sharedState->v1.y, sharedState->v3.x, sharedState->v3.y);
+
 }
 
 //--------------------------------------------------------------

@@ -14,6 +14,12 @@ public:
     void update();
     void draw();
     void mousePressed(int x, int y, int button);
+    void mouseMoved(int x, int y);
+    void keyPressed(int key);
+    void keyReleased(int key);
+    void mouseDragged(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
+    void mouseEntered(int x, int y);
     // CV variables
     ofVideoGrabber cam;
     ofxCv::ContourFinder contourFinder1;
@@ -38,4 +44,7 @@ public:
     shared_ptr<State> sharedState;
     // Position variable
     ofVec2f point;
+
+    vector<bool> vn;
+
 };

@@ -5,6 +5,7 @@
 #include "State.h"
 
 class Projector: public ofBaseApp {
+
  public:
 
     void setup();
@@ -12,12 +13,15 @@ class Projector: public ofBaseApp {
     void draw();
     void keyPressed(int key);
     bool bFullscreen;
-    float xp1;
-    float yp1;
+    float xp1, yp1;
+    int gwidth, gheight;
 
     shared_ptr<State> sharedState;
     ofFbo fbo;
-
+    ofMesh pMesh;
+    ofTexture pTex;
     vector<cv::Rect> boundingRects;
+
+    ofImage img1;
 };
 

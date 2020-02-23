@@ -36,14 +36,23 @@ void ofApp::setup() {
         thresholds.push_back(t);
         trackHues.push_back(b);
         changeColours.push_back(cc);
-        contourFinders.push_back(cf);
+        //contourFinders.push_back(cf);
         sharedState->contourFinders.push_back(cf);
         targetColours.push_back(ofColor(0,0,0));
-        gui.add(thresholds[i].set("Threshold " + to_string(i), 128,0,255));
+        gui.add(thresholds[i].set("Threshold " + to_string(i), 255,0,255));
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), false));
         gui.add(changeColours[i].set("Change colour "+to_string(i), false));
+
+        sharedState->contourFinders[i].setMinArea(10);
+        sharedState->contourFinders[i].setMaxArea(40);
+        sharedState->contourFinders[i].setMinAreaRadius(10);
+        sharedState->contourFinders[i].setMaxAreaRadius(150);
+
     }
 
+    for(int i = 0; i < 4; i++){
+        vn.push_back(false);
+    }
 }
 
 //--------------------------------------------------------------
@@ -92,6 +101,21 @@ void ofApp::draw() {
     //ofDrawCircle(sharedState->test1,sharedState->test1, 100, 100);
     //sharedState->test1+=(int)ofRandom(-2, 2);
     //sharedState->test2+=(int)ofRandom(-2, 2);
+
+
+    // Draw anchor points and when hovered
+    ofPushMatrix();
+    for(int i = 0; i < 4; i++){
+        ofSetColor(100, 244, 244, 100);
+        ofFill();
+        ofDrawCircle(sharedState->proPoints[i].x, sharedState->proPoints[i].y, 10);
+        if (vn[i]==true){
+            ofNoFill();
+            ofDrawCircle(sharedState->proPoints[i].x, sharedState->proPoints[i].y, 30);
+        }
+    }
+    ofPopMatrix();
+
 }
 
 //--------------------------------------------------------------
@@ -102,6 +126,50 @@ void ofApp::mousePressed(int x, int y, int button) {
 }
 
 //--------------------------------------------------------------
+void ofApp::keyPressed(int key){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseMoved(int x, int y ){
+    // Anchor hover booleans
+    for(int i = 0; i < 4; i++){
+        if (ofDist(mouseX, mouseY, sharedState->proPoints[i].x, sharedState->proPoints[i].y) < 20){
+            vn[i] = true;
+        } else {
+            vn[i] = false;
+        }
+    }
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseDragged(int x, int y, int button){
+    // Control anchors
+    for(int i = 0; i < 4; i++){
+        if (ofDist(mouseX, mouseY, sharedState->proPoints[i].x, sharedState->proPoints[i].y) < 20){
+            sharedState->proPoints[i].x = mouseX;
+            sharedState->proPoints[i].y = mouseY;
+        }
+    }
+
+}
 
 
 //--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseEntered(int x, int y){
+
+}
+
+
+
