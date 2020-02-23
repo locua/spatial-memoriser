@@ -2,7 +2,8 @@
 #define _STATE
 
 #include "ofMain.h"
-#include <vector>
+#include "ofxCv.h"
+#include "ofxGui.h"
 
 class State {
 public:
@@ -18,7 +19,10 @@ public:
     int num_colours=5;
     vector<ofVec2f> points;
 
-    int get_test1(){ return test1;}
+    //vector<cv::Rect>& boundingRects;
+
+    vector<cv::Point2f> centers;
+    vector<ofxCv::ContourFinder> contourFinders;
 };
 
 #endif

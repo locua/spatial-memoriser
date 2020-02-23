@@ -9,20 +9,30 @@ void Projector::setup(){
     yp1=500;
     // frame buffer thing
     fbo.allocate(1920, 1080, GL_RGBA);
+    fbo.begin();
+    ofClear(255,255,255, 0);
+    fbo.end();
 }
 
 //--------------------------------------------------------------
 void Projector::update(){
-    fbo.begin();
-    ofSetColor(255,255,255, alpha);
-    ofDrawRectangle(100,100,400,400);
-    fbo.end();
 
+    fbo.begin();
+    ofBackground(0,0);
+
+    for(int i = 0; i < sharedState->num_colours; i++){
+        boundingRects = sharedState->contourFinders[i].getBoundingRects();
+        for(unsigned int j = 0; j < boundingRects.size(); j++){
+            cv::Point2f p_;
+            p_ = sharedState->contourFinders[i].getCenter(j);
+            ofDrawCircle(p_.x, p_.y, 10, 10);
+        }
+    }
+    fbo.end();
 }
 
 //--------------------------------------------------------------
 void Projector::draw(){
-
 
     fbo.draw(0,0);
 }

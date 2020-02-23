@@ -26,7 +26,7 @@ void ofApp::setup() {
     // initialise gui
 
     gui.setup();
-
+    gui.setPosition(50,500);
     // Initialise gui and parameters
     for(int i = 0; i < num_colours; i++){
         ofParameter<float> t;
@@ -37,6 +37,7 @@ void ofApp::setup() {
         trackHues.push_back(b);
         changeColours.push_back(cc);
         contourFinders.push_back(cf);
+        sharedState->contourFinders.push_back(cf);
         targetColours.push_back(ofColor(0,0,0));
         gui.add(thresholds[i].set("Threshold " + to_string(i), 128,0,255));
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), false));
@@ -53,9 +54,9 @@ void ofApp::update() {
     if(cam.isFrameNew()) {
         // Loop for number of colours and track target colours
         for(int i = 0; i < num_colours; i++){
-            contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
-            contourFinders[i].setThreshold(thresholds[i]);
-            contourFinders[i].findContours(cam);
+            sharedState->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
+            sharedState->contourFinders[i].setThreshold(thresholds[i]);
+            sharedState->contourFinders[i].findContours(cam);
         }
     }
 }
@@ -71,7 +72,7 @@ void ofApp::draw() {
     gui.draw();
     // Draw contours found
     for(int i=0; i < num_colours; i ++)
-        contourFinders[i].draw();
+        sharedState->contourFinders[i].draw();
     // Draw tracking
     ofPushMatrix();
     ofTranslate(700,10);
