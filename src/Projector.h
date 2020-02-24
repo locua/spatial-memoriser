@@ -23,5 +23,9 @@ class Projector: public ofBaseApp {
     vector<cv::Rect> boundingRects;
 
     ofImage img1;
+
+    ofPlanePrimitive plane;
+
+    ofEasyCam cam;
 };
 

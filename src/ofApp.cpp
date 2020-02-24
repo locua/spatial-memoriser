@@ -103,7 +103,7 @@ void ofApp::draw() {
     //sharedState->test2+=(int)ofRandom(-2, 2);
 
 
-    // Draw anchor points and when hovered
+    // Draw anchor points and highlight when hovered
     ofPushMatrix();
     for(int i = 0; i < 4; i++){
         ofSetColor(100, 244, 244, 100);
@@ -155,6 +155,8 @@ void ofApp::mouseDragged(int x, int y, int button){
         if (ofDist(mouseX, mouseY, sharedState->proPoints[i].x, sharedState->proPoints[i].y) < 20){
             sharedState->proPoints[i].x = mouseX;
             sharedState->proPoints[i].y = mouseY;
+            sharedState->setvx(i, mouseX);
+            sharedState->setvy(i, mouseY);
         }
     }
 

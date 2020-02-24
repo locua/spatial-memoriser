@@ -30,4 +30,5 @@ int main() {
     ofRunApp(projectorWindow, projectorApp);
     ofRunApp(mainWindow, mainApp);
     ofRunMainLoop();
+
 }
