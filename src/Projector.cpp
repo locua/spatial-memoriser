@@ -9,10 +9,9 @@ void Projector::setup(){
     yp1=500;
 
     // fbo
-    ofDisableArbTex();
+    //ofDisableArbTex();
     fbo.allocate(1920, 1080, GL_RGBA);
     fbo.begin();
-    ofClear(255,255,255, 1);
     fbo.end();
 
     plane.set(1920/2, 1080/2, 2, 2);
@@ -21,28 +20,33 @@ void Projector::setup(){
 
     for(int i = 0; i < 4; i++){
         pMesh.addVertex(sharedState->proPoints[i]);
+        pMesh.addTexCoord(ofVec2f(sharedState->proPoints[i].x, sharedState->proPoints[i].y));
     }
 
-    pMesh.addColor(ofColor(0));
-    pMesh.addColor(ofColor(255));
-    pMesh.addColor(ofColor(255));
-    pMesh.addColor(ofColor(255));
+    ////pMesh.addColor(ofColor(0));
+    ////pMesh.addColor(ofColor(255));
+    ////pMesh.addColor(ofColor(255));
+    ////pMesh.addColor(ofColor(255));
     pMesh.addTriangle(0, 1, 2);
     pMesh.addTriangle(3, 0, 2);
+
 
 }
 
 //--------------------------------------------------------------
 void Projector::update(){
     fbo.begin();
+    ofClear(0,0,0);
     ofBackground(200);
     for(int i = 0; i < sharedState->num_colours; i++){
+        sharedState->contourFinders[i].draw();
         boundingRects = sharedState->contourFinders[i].getBoundingRects();
         for(unsigned int j = 0; j < boundingRects.size(); j++){
             cv::Point2f p_;
             p_ = sharedState->contourFinders[i].getCenter(j);
-            ofSetColor(255,255,255);
-            ofDrawCircle(p_.x, p_.y, 10, 10);
+            ofSetColor(255,100,255);
+            //ofDrawCircle(p_.x, p_.y, 10, 10);
+            ofDrawCircle(ofMap(p_.x,0, 640, 0, 1920),ofMap(p_.y, 0, 480, 0, 1080), 10, 10);
         }
     }
     fbo.end();
@@ -67,7 +71,7 @@ void Projector::draw(){
 //    ofTranslate(-1920/2, -1080/2, 0);
     fbo.getTexture().bind();
     //fbo.draw(100,100, 1000, 900);
-    pMesh.drawWireframe();
+    pMesh.draw();
     fbo.getTexture().unbind();
 
     ofPopMatrix();
