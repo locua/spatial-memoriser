@@ -53,6 +53,12 @@ void ofApp::setup() {
     for(int i = 0; i < 4; i++){
         vn.push_back(false);
     }
+
+    img1.load("pic1.png");
+    img1Pix = img1.getPixels();
+
+//    for(int i = 0; i < img1Pix.size(); i++){
+//    }
 }
 
 //--------------------------------------------------------------
@@ -94,14 +100,6 @@ void ofApp::draw() {
         ofDrawRectangle(0, 0, 64, 64);
     }
     ofPopMatrix();
-    // Debugging
-    //cout << targetColours.size() << endl;
-
-    //ofSetColor(200);
-    //ofDrawCircle(sharedState->test1,sharedState->test1, 100, 100);
-    //sharedState->test1+=(int)ofRandom(-2, 2);
-    //sharedState->test2+=(int)ofRandom(-2, 2);
-
 
     // Draw anchor points and highlight when hovered
     ofPushMatrix();
@@ -116,6 +114,11 @@ void ofApp::draw() {
     }
     ofPopMatrix();
 
+    img1.setFromPixels(img1Pix);
+    img1.draw(700,200);
+
+    // Debugging
+    //cout << targetColours.size() << endl;
 }
 
 //--------------------------------------------------------------

@@ -44,7 +44,9 @@ public:
     shared_ptr<State> sharedState;
     // Position variable
     ofVec2f point;
-
     vector<bool> vn;
+
+    ofImage img1;
+    ofPixels img1Pix;
 
 };
