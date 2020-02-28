@@ -38,7 +38,7 @@ public:
     int num_colours = 5;
     // Gui
     ofxPanel gui;
-    // Projector class for second window display
+    // projector class for second window display
     shared_ptr<Projector> projector;
     // Shared state
     shared_ptr<State> sharedState;

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxGui.h"
 #include "State.h"
+#include "ofxPiMapper.h"
 
 class Projector: public ofBaseApp {
 
@@ -17,15 +17,8 @@ class Projector: public ofBaseApp {
     int gwidth, gheight;
 
     shared_ptr<State> sharedState;
-    ofFbo fbo;
-    ofMesh pMesh;
-    ofTexture pTex;
-    vector<cv::Rect> boundingRects;
 
-    ofImage img1;
+    ofxPiMapper mapper;
 
-    ofPlanePrimitive plane;
-
-    ofEasyCam cam;
 };
 
