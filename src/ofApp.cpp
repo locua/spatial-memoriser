@@ -12,7 +12,7 @@ ofApp::~ofApp(){
 void ofApp::setup() {
     cam.listDevices();
     // camera and window setup
-    int camId = 0;
+    int camId = 2;
     int wwidth = 1920;
     int wheight = 1080;
     ofSetWindowShape(wwidth, wheight);
@@ -47,7 +47,6 @@ void ofApp::setup() {
         sharedState->contourFinders[i].setMaxArea(40);
         sharedState->contourFinders[i].setMinAreaRadius(10);
         sharedState->contourFinders[i].setMaxAreaRadius(150);
-
     }
 
     for(int i = 0; i < 4; i++){
@@ -114,8 +113,8 @@ void ofApp::draw() {
     }
     ofPopMatrix();
 
-    img1.setFromPixels(img1Pix);
-    img1.draw(700,200);
+    // img1.setFromPixels(img1Pix);
+    // img1.draw(700,200);
 
     // Debugging
     //cout << targetColours.size() << endl;
