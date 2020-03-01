@@ -35,7 +35,6 @@ public:
 
     vector<ofVec3f> proPoints;
 
-
     void setvx(int i, int val){
         proPoints[i].x = val;
     };

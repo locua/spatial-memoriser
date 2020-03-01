@@ -12,7 +12,7 @@ ofApp::~ofApp(){
 void ofApp::setup() {
     cam.listDevices();
     // camera and window setup
-    int camId = 2;
+    int camId = 0;
     int wwidth = 1920;
     int wheight = 1080;
     ofSetWindowShape(wwidth, wheight);

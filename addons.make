@@ -1,4 +1,4 @@
 ofxCv
-ofxOpenCv
 ofxGui
+ofxOpenCv
 ofxPiMapper

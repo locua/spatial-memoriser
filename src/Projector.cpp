@@ -3,6 +3,7 @@
 
 //--------------------------------------------------------------
 void Projector::setup(){
+    pSource.set_ss(sharedState);
     mapper.registerFboSource(pSource);
     mapper.setup();
 }
@@ -16,6 +17,9 @@ void Projector::update(){
 void Projector::draw(){
     ofBackground(0);
     mapper.draw();
+    // for(int i =0; i < sharedState->num_colours; i++){
+    //     sharedState->contourFinders[i].draw();
+    // }
 }
 
 //--------------------------------------------------------------
