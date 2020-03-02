@@ -83,14 +83,15 @@ void ofApp::update() {
 void ofApp::draw() {
     ofSetColor(255);
     // Draw camera
-    // cam.draw(0, 0);
+    cam.draw(0, 0);
     camImage.setFromPixels(camPix);
-    camImage.draw(0,0);
-    ofSetLineWidth(2);
+    // camImage.draw(0,0);
+    ofSetLineWidth(3);
     // Draw gui
     ofPushMatrix();
     gui.draw();
     // Draw contours found
+    ofTranslate(xr, yr);
     for(int i=0; i < num_colours; i ++)
         sharedState->contourFinders[i].draw();
     // Draw tracking
@@ -119,6 +120,10 @@ void ofApp::draw() {
     //     }
     // }
     ofSetColor(100, 244, 244, 100);
+    ofFill();
+    ofSetColor(255, 200, 200);
+    ofDrawCircle(xr, yr, 10);
+    ofDrawCircle(xr + wr, yr + hr, 10);
     ofNoFill();
     if(xyb==true){
         ofDrawCircle(xr, yr, 30);
@@ -165,11 +170,16 @@ void ofApp::mouseMoved(int x, int y ){
     //         vn[i] = false;
     //     }
     // }
+    // Crop area handles
     if(ofDist(mouseX, mouseY, xr, yr) < 20){
         xyb=true;
+    } else {
+        xyb=false;
     }
     if (ofDist(mouseX, mouseY, xr+wr, yr+hr) < 20) {
         whb=true;
+    } else {
+        whb=false;
     }
 }
 
