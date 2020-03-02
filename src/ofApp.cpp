@@ -45,32 +45,35 @@ void ofApp::setup() {
 
         sharedState->contourFinders[i].setMinArea(10);
         sharedState->contourFinders[i].setMaxArea(40);
-        sharedState->contourFinders[i].setMinAreaRadius(10);
-        sharedState->contourFinders[i].setMaxAreaRadius(150);
+        sharedState->contourFinders[i].setMinAreaRadius(40);
+        sharedState->contourFinders[i].setMaxAreaRadius(350);
     }
 
     for(int i = 0; i < 4; i++){
         vn.push_back(false);
     }
 
-    img1.load("pic1.png");
-    img1Pix = img1.getPixels();
+    // img1.load("pic1.png");
+    // img1Pix = img1.getPixels();
 
 //    for(int i = 0; i < img1Pix.size(); i++){
 //    }
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
     // update camera
     cam.update();
+    camPix = cam.getPixels();
+    camPix.cropTo(camPix, 100, 100, 300, 400);
     // check new frame
     if(cam.isFrameNew()) {
         // Loop for number of colours and track target colours
         for(int i = 0; i < num_colours; i++){
             sharedState->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
             sharedState->contourFinders[i].setThreshold(thresholds[i]);
-            sharedState->contourFinders[i].findContours(cam);
+            sharedState->contourFinders[i].findContours(camPix);
         }
     }
 }
@@ -79,7 +82,9 @@ void ofApp::update() {
 void ofApp::draw() {
     ofSetColor(255);
     // Draw camera
-    cam.draw(0, 0);
+    // cam.draw(0, 0);
+    camImage.setFromPixels(camPix);
+    camImage.draw(0,0);
     ofSetLineWidth(2);
     // Draw gui
     ofPushMatrix();

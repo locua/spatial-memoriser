@@ -24,7 +24,7 @@ class Projector: public ofBaseApp {
 
     ofxPiMapper mapper;
     shared_ptr<State> sharedState;
-    ProjectorSource pSource;
+    /* ProjectorSource pSource; */
 
 };
 

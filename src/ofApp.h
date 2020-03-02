@@ -46,7 +46,8 @@ public:
     ofVec2f point;
     vector<bool> vn;
 
-    ofImage img1;
-    ofPixels img1Pix;
+    ofImage camImage;
+    ofPixels camPix;
 
 };
+
