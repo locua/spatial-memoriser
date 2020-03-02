@@ -19,8 +19,10 @@ void ofApp::setup() {
     cam.setDeviceID(camId);
     if(camId==2){
         cam.setup(1920, 1080);
+        xr = 20, yr = 20, wr = 1800, hr = 900;
     } else if(camId==0){
         cam.setup(640, 480);
+        xr = 20, yr = 20, wr = 300, hr = 200;
     }
     //contourFinder.setInvert(true); // find black instead of white
     // initialise gui
@@ -53,11 +55,10 @@ void ofApp::setup() {
         vn.push_back(false);
     }
 
-    // img1.load("pic1.png");
-    // img1Pix = img1.getPixels();
 
-//    for(int i = 0; i < img1Pix.size(); i++){
-//    }
+    //
+    xyb=false;
+    whb=false;
 
 }
 
@@ -66,7 +67,7 @@ void ofApp::update() {
     // update camera
     cam.update();
     camPix = cam.getPixels();
-    camPix.cropTo(camPix, 100, 100, 300, 400);
+    camPix.cropTo(camPix, xr, yr, wr, hr);
     // check new frame
     if(cam.isFrameNew()) {
         // Loop for number of colours and track target colours
@@ -107,15 +108,27 @@ void ofApp::draw() {
 
     // Draw anchor points and highlight when hovered
     ofPushMatrix();
-    for(int i = 0; i < 4; i++){
-        ofSetColor(100, 244, 244, 100);
-        ofFill();
-        ofDrawCircle(sharedState->proPoints[i].x, sharedState->proPoints[i].y, 10);
-        if (vn[i]==true){
-            ofNoFill();
-            ofDrawCircle(sharedState->proPoints[i].x, sharedState->proPoints[i].y, 30);
-        }
+    // for(int i = 0; i < 4; i++){
+    //     ofSetColor(100, 244, 244, 100);
+    //     ofFill();
+    //     ofDrawCircle(sharedState->proPoints[i].x,
+    //     sharedState->proPoints[i].y, 10); if (vn[i]==true){
+    //         ofNoFill();
+    //         ofDrawCircle(sharedState->proPoints[i].x,
+    //         sharedState->proPoints[i].y, 30);
+    //     }
+    // }
+    ofSetColor(100, 244, 244, 100);
+    ofNoFill();
+    if(xyb==true){
+        ofDrawCircle(xr, yr, 30);
     }
+    if(whb==true){
+        ofDrawCircle(xr+wr, yr+hr, 30);
+    }
+    ofFill();
+    ofSetColor(ofColor(255, 200, 233, 40));
+    ofDrawRectangle(xr, yr, wr, hr);
     ofPopMatrix();
 
     // img1.setFromPixels(img1Pix);
@@ -145,30 +158,42 @@ void ofApp::keyReleased(int key){
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
     // Anchor hover booleans
-    for(int i = 0; i < 4; i++){
-        if (ofDist(mouseX, mouseY, sharedState->proPoints[i].x, sharedState->proPoints[i].y) < 20){
-            vn[i] = true;
-        } else {
-            vn[i] = false;
-        }
+    // for(int i = 0; i < 4; i++){
+    //     if (ofDist(mouseX, mouseY, sharedState->proPoints[i].x, sharedState->proPoints[i].y) < 20){
+    //         vn[i] = true;
+    //     } else {
+    //         vn[i] = false;
+    //     }
+    // }
+    if(ofDist(mouseX, mouseY, xr, yr) < 20){
+        xyb=true;
     }
-
+    if (ofDist(mouseX, mouseY, xr+wr, yr+hr) < 20) {
+        whb=true;
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     // Control anchors
-    for(int i = 0; i < 4; i++){
-        if (ofDist(mouseX, mouseY, sharedState->proPoints[i].x, sharedState->proPoints[i].y) < 20){
-            sharedState->proPoints[i].x = mouseX;
-            sharedState->proPoints[i].y = mouseY;
-            sharedState->setvx(i, mouseX);
-            sharedState->setvy(i, mouseY);
-        }
+    // for(int i = 0; i < 4; i++){
+    //     if (ofDist(mouseX, mouseY, sharedState->proPoints[i].x, sharedState->proPoints[i].y) < 20){
+    //         sharedState->proPoints[i].x = mouseX;
+    //         sharedState->proPoints[i].y = mouseY;
+    //         sharedState->setvx(i, mouseX);
+    //         sharedState->setvy(i, mouseY);
+    //     }
+    // }
+
+    if (xyb) {
+        xr=mouseX;
+        yr=mouseY;
     }
-
+    if (whb) {
+        wr=mouseX-xr;
+        hr=mouseY-yr;
+    }
 }
-
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){

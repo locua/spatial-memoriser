@@ -1,9 +1,6 @@
 #pragma once
 
-#include "VideoSource.h"
 #include "ofMain.h"
-#include "ofxPiMapper.h"
-#include "projectorSource.h"
 #include "State.h"
 
 class Projector: public ofBaseApp {
@@ -22,7 +19,6 @@ class Projector: public ofBaseApp {
     float xp1, yp1;
     int gwidth, gheight;
 
-    ofxPiMapper mapper;
     shared_ptr<State> sharedState;
     /* ProjectorSource pSource; */
 

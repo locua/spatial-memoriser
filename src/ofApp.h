@@ -48,6 +48,9 @@ public:
 
     ofImage camImage;
     ofPixels camPix;
+    /* ofRectangle rect; */
+    int xr, yr, wr, hr;
+    bool xyb, whb;
 
 };
 
