@@ -12,7 +12,7 @@ ofApp::~ofApp(){
 void ofApp::setup() {
     // cam.listDevices();
     // camera and window setup
-    int camId = 2;
+    int camId = 0;
     int wwidth = 1920;
     int wheight = 1080;
     ofSetWindowShape(wwidth, wheight);
@@ -108,17 +108,7 @@ void ofApp::draw() {
     }
     ofPopMatrix();
 
-    // Draw anchor points and highlight when hovered
-    // for(int i = 0; i < 4; i++){
-    //     ofSetColor(100, 244, 244, 100);
-    //     ofFill();
-    //     ofDrawCircle(ss->proPoints[i].x,
-    //     ss->proPoints[i].y, 10); if (vn[i]==true){
-    //         ofNoFill();
-    //         ofDrawCircle(ss->proPoints[i].x,
-    //         ss->proPoints[i].y, 30);
-    //     }
-    // }
+    // draw crop rect and circles
     ofPushMatrix();
     ofSetColor(100, 244, 244, 100);
     ofFill();

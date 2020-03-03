@@ -18,6 +18,8 @@ class Projector: public ofBaseApp {
     bool bFullscreen;
     float xp1, yp1;
     int gwidth, gheight;
+    bool corners;
+    float mapx, mapy;
 
     shared_ptr<State> sharedState;
     /* ProjectorSource pSource; */
