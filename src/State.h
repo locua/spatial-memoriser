@@ -4,13 +4,11 @@
 #include "ofMain.h"
 #include "ofxCv.h"
 #include "ofxGui.h"
+#include "ofxXmlSettings.h"
 
 class State {
 public:
     State(){
-        //cout << "State Constructor" << endl;
-        test1 = 400;
-        test2 = 400;
         ofVec3f v1;
         ofVec3f v2;
         ofVec3f v3;
@@ -23,25 +21,31 @@ public:
         proPoints.push_back(v2);
         proPoints.push_back(v3);
         proPoints.push_back(v4);
+        rectPos.set(20, 20);
+        width_height.set(1900, 1060);
     }
-    int test1;
-    int test2;
     int num_colours=5;
-
     //vector<cv::Re ct>& underacts;
-
     vector<cv::Point2f> centers;
     vector<ofxCv::ContourFinder> contourFinders;
-
     vector<ofVec3f> proPoints;
-
     void setvx(int i, int val){
         proPoints[i].x = val;
     };
-
     void setvy(int i, int val){
         proPoints[i].y = val;
     };
+    void set_rectPos(int x, int y){
+        rectPos.set(x, y);
+    };
+    void set_width_height(int w, int h){
+        width_height.set(w, h);
+    };
+    ofVec2f rectPos;
+    ofVec2f width_height;
+    ofxXmlSettings settings;
+
+
 };
 
 #endif

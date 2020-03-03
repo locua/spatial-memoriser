@@ -41,7 +41,7 @@ public:
     // projector class for second window display
     shared_ptr<Projector> projector;
     // Shared state
-    shared_ptr<State> sharedState;
+    shared_ptr<State> ss;
     // Position variable
     ofVec2f point;
     vector<bool> vn;

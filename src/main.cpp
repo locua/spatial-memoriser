@@ -24,7 +24,7 @@ int main() {
     mainApp->projector = projectorApp;
 
     shared_ptr<State> sharedState(new State);
-    mainApp->sharedState = sharedState;
+    mainApp->ss = sharedState;
     projectorApp->sharedState = sharedState;
 
     ofRunApp(projectorWindow, projectorApp);
