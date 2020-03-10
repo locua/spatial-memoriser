@@ -20,6 +20,7 @@ public:
     void mouseDragged(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void mouseEntered(int x, int y);
+    void saveSettings();
     // CV variables
     ofVideoGrabber cam;
     ofxCv::ContourFinder contourFinder1;

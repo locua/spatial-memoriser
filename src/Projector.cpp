@@ -31,18 +31,20 @@ void Projector::draw(){
         // 1080), 30);
       }
     }
-
-    ofSetColor(255,200,200);
-    if(corners){
-        ofDrawTriangle(0, 0, 100, 0, 0, 100);
-        ofDrawTriangle(ofGetWidth(), 0, ofGetWidth()-100, 0, ofGetWidth(), 100);
-        ofDrawTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight()-100, ofGetWidth()-100, ofGetHeight());
-        ofDrawTriangle(0, ofGetHeight(), 100, ofGetHeight(), 0, ofGetHeight()-100);
+    // Draw corners
+    ofFill();
+    ofSetColor(255, 200, 200);
+    if(sharedState->corners){
+         ofDrawTriangle(0, 0, 200, 0, 0, 200);
+         ofDrawTriangle(ofGetWidth(), 0, ofGetWidth()-200, 0, ofGetWidth(), 200);
+         ofDrawTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight()-200, ofGetWidth()-200, ofGetHeight());
+         ofDrawTriangle(0, ofGetHeight(), 200, ofGetHeight(), 0, ofGetHeight()-200);
     }
 }
 
 //--------------------------------------------------------------
 void Projector::keyPressed(int key){
+    // Toggle fullscreen with f key
     if (key == 'f') {
       if (bFullscreen==1) {
         ofSetFullscreen(false);
@@ -51,15 +53,6 @@ void Projector::keyPressed(int key){
         ofSetFullscreen(true);
         bFullscreen=1;
       }
-    }
-
-    if(key=='c'){
-        if(corners) {
-            corners=false;
-        }
-        else {
-            corners = true;
-        }
     }
 }
 
@@ -74,23 +67,4 @@ void Projector::mouseReleased(int x, int y, int button){
 
 void Projector::mousePressed(int x, int y, int button){
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

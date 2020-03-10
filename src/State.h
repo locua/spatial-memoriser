@@ -23,9 +23,9 @@ public:
         proPoints.push_back(v4);
         rectPos.set(20, 20);
         width_height.set(1900, 1060);
+        corners=false;
     }
     int num_colours=5;
-    //vector<cv::Re ct>& underacts;
     vector<cv::Point2f> centers;
     vector<ofxCv::ContourFinder> contourFinders;
     vector<ofVec3f> proPoints;
@@ -44,8 +44,7 @@ public:
     ofVec2f rectPos;
     ofVec2f width_height;
     ofxXmlSettings settings;
-
-
+    bool corners;
 };
 
 #endif
