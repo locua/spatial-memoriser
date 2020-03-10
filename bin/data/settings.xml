@@ -6,9 +6,9 @@
         <maxAreaRadius>350</maxAreaRadius>
         <trackHue>1</trackHue>
         <threshold>
-            <r>255</r>
-            <g>0</g>
-            <b>255</b>
+            <r>122</r>
+            <g>105</g>
+            <b>99</b>
         </threshold>
     </contourFinder>
     <contourFinder>
@@ -18,9 +18,9 @@
         <maxAreaRadius>350</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>255</r>
-            <g>0</g>
-            <b>255</b>
+            <r>55</r>
+            <g>30</g>
+            <b>19</b>
         </threshold>
     </contourFinder>
     <contourFinder>

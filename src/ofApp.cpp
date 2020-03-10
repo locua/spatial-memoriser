@@ -52,7 +52,7 @@ void ofApp::setup() {
         targetColours.push_back(ofColor(r, g, b_));
         // cout << r << g << b_ << endl;
         bool trackHue = ss->settings.getValue("trackHue", 0);
-        gui.add(thresholds[i].set("Threshold " + to_string(i), r,g,b_));
+        gui.add(thresholds[i].set("Threshold " + to_string(i), 0,0,0));
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), trackHue));
         gui.add(changeColours[i].set("Change colour "+to_string(i), false));
         int minArea = ss->settings.getValue("minArea", 0);
@@ -228,8 +228,20 @@ void ofApp::saveSettings() {
     for(int i = 0; i < ss->num_colours; i++){
         ss->settings.pushTag("contourFinder", i);
         ss->settings.setValue("trackHue", trackHues[i]);
+
+        ss->settings.pushTag("threshold");
+        ss->settings.setValue("r", targetColours[i].r);
+        ss->settings.setValue("g", targetColours[i].g);
+        ss->settings.setValue("b", targetColours[i].b);
         ss->settings.popTag();
+
+        ss->settings.popTag();
+
     }
     ss->settings.popTag();
 
+    cout << "------------------------------------------------------------------------------" << endl;
+    cout << "--------------------------- settings saved -----------------------------------" << endl;
+    cout << "------------------------------------------------------------------------------" << endl;
+    cout << "------------------------------------------------------------------------------" << endl;
 }
