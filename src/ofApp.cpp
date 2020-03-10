@@ -36,10 +36,14 @@ void ofApp::setup() {
         ofParameter<float> t;
         ofParameter<bool> b;
         ofParameter<bool> cc;
+        ofParameter<int> minArea_;
+        ofParameter<int> maxArea_;
         ofxCv::ContourFinder cf;
         thresholds.push_back(t);
         trackHues.push_back(b);
         changeColours.push_back(cc);
+        minAreas.push_back(minArea_);
+        maxAreas.push_back(maxArea_);
         // contourFinders.push_back(cf);
         // Load values from settings.xml and set values
         ss->settings.pushTag("contourFinder", i);
@@ -59,6 +63,8 @@ void ofApp::setup() {
         int maxArea = ss->settings.getValue("maxArea", 0);
         int minAreaRadius = ss->settings.getValue("minAreaRadius", 0);
         int maxAreaRadius = ss->settings.getValue("maxAreaRadius", 0);
+        gui.add(minAreas[i].set("minArea: " + to_string(i), minArea));
+        gui.add(maxAreas[i].set("maxArea: " + to_string(i), maxArea));
         ss->contourFinders[i].setMinArea(minArea);
         ss->contourFinders[i].setMaxArea(maxArea);
         ss->contourFinders[i].setMinAreaRadius(minAreaRadius);
@@ -163,8 +169,8 @@ void ofApp::mousePressed(int x, int y, int button) {
 void ofApp::keyPressed(int key){
     // Save settings to disk
     if(key=='s') {
-        ss->settings.saveFile("settings.xml");
-        saveSettings();
+      saveSettings();
+      ss->settings.saveFile("settings.xml");
     }
     // Toggle corners bool
     if(key=='c'){
@@ -223,7 +229,7 @@ void ofApp::mouseEntered(int x, int y){
 //--------------------------------------------------------------
 
 void ofApp::saveSettings() {
-
+    // Save the settings to xml
     ss->settings.pushTag("contourFinders");
     for(int i = 0; i < ss->num_colours; i++){
         ss->settings.pushTag("contourFinder", i);

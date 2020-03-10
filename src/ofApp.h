@@ -23,14 +23,10 @@ public:
     void saveSettings();
     // CV variables
     ofVideoGrabber cam;
-    ofxCv::ContourFinder contourFinder1;
-    ofxCv::ContourFinder contourFinder2;
     ofColor targetColor1;
     ofColor targetColor2;
-    ofParameter<float> threshold1;
-    ofParameter<float> threshold2;
-    ofParameter<bool> trackHs1;
-    ofParameter<bool> trackHs2;
+    vector <ofParameter<int>> minAreas;
+    vector <ofParameter<int>> maxAreas;
     vector<ofColor> targetColours;
     vector<ofParameter<float>> thresholds;
     vector<ofParameter<bool>> trackHues;
@@ -52,6 +48,5 @@ public:
     /* ofRectangle rect; */
     int xr, yr, wr, hr;
     bool xyb, whb;
-
 };
 
