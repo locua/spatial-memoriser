@@ -44,6 +44,10 @@ void ofApp::setup() {
         changeColours.push_back(cc);
         minAreas.push_back(minArea_);
         maxAreas.push_back(maxArea_);
+        ofParameter<int> minarearad;
+        ofParameter<int> maxarearad;
+        minAreaRadi.push_back(minarearad);
+        maxAreaRadi.push_back(maxarearad);
         // contourFinders.push_back(cf);
         // Load values from settings.xml and set values
         ss->settings.pushTag("contourFinder", i);
@@ -56,21 +60,30 @@ void ofApp::setup() {
         targetColours.push_back(ofColor(r, g, b_));
         // cout << r << g << b_ << endl;
         bool trackHue = ss->settings.getValue("trackHue", 0);
-        gui.add(thresholds[i].set("Threshold " + to_string(i), 0,0,0));
+        gui.add(thresholds[i].set("Threshold " + to_string(i), 255,0,255));
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), trackHue));
         gui.add(changeColours[i].set("Change colour "+to_string(i), false));
         int minArea = ss->settings.getValue("minArea", 0);
         int maxArea = ss->settings.getValue("maxArea", 0);
         int minAreaRadius = ss->settings.getValue("minAreaRadius", 0);
         int maxAreaRadius = ss->settings.getValue("maxAreaRadius", 0);
-        gui.add(minAreas[i].set("minArea: " + to_string(i), minArea));
-        gui.add(maxAreas[i].set("maxArea: " + to_string(i), maxArea));
+        gui.add(minAreas[i].set("minArea: " + to_string(i), minArea, 0, 255));
+        gui.add(maxAreas[i].set("maxArea: " + to_string(i), maxArea, 0, 255));
+        gui.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), 40, 0, 255));
+        gui.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), 100, 0, 255));
         ss->contourFinders[i].setMinArea(minArea);
         ss->contourFinders[i].setMaxArea(maxArea);
         ss->contourFinders[i].setMinAreaRadius(minAreaRadius);
         ss->contourFinders[i].setMaxAreaRadius(maxAreaRadius);
         ss->settings.popTag();
     }
+    ss->settings.popTag();
+
+
+    // set camera crop / projector position
+    ss->settings.pushTag("projectPositions");
+    ss->set_rectPos(ss->settings.getValue("x", 0), ss->settings.getValue("y", 0));
+    ss->set_width_height(ss->settings.getValue("w", 0), ss->settings.getValue("h", 0));
     ss->settings.popTag();
 
     for(int i = 0; i < 4; i++){
@@ -229,21 +242,30 @@ void ofApp::mouseEntered(int x, int y){
 //--------------------------------------------------------------
 
 void ofApp::saveSettings() {
-    // Save the settings to xml
+    // set the cv settings
     ss->settings.pushTag("contourFinders");
     for(int i = 0; i < ss->num_colours; i++){
         ss->settings.pushTag("contourFinder", i);
         ss->settings.setValue("trackHue", trackHues[i]);
-
+        ss->settings.setValue("minArea", minAreas[i]);
+        ss->settings.setValue("maxArea", maxAreas[i]);
+        ss->settings.setValue("minAreaRadius", minAreaRadi[i]);
+        ss->settings.setValue("maxAreaRadius", maxAreaRadi[i]);
         ss->settings.pushTag("threshold");
         ss->settings.setValue("r", targetColours[i].r);
         ss->settings.setValue("g", targetColours[i].g);
         ss->settings.setValue("b", targetColours[i].b);
+        // pop
         ss->settings.popTag();
-
         ss->settings.popTag();
-
     }
+    ss->settings.popTag();
+    // Projector position set
+    ss->settings.pushTag("projectPositions");
+    ss->settings.setValue("x", ss->rectPos.x);
+    ss->settings.setValue("y", ss->rectPos.y);
+    ss->settings.setValue("w", ss->width_height.x);
+    ss->settings.setValue("h", ss->width_height.y);
     ss->settings.popTag();
 
     cout << "------------------------------------------------------------------------------" << endl;

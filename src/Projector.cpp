@@ -26,7 +26,7 @@ void Projector::draw(){
         p_ = sharedState->contourFinders[i].getCenter(j);
         ofSetColor(255, 200, 255);
         ofNoFill();
-        ofDrawCircle(p_.x, p_.y, 30);
+        ofDrawCircle(p_.x, p_.y, 100);
         // ofDrawCircle(ofMap(p_.x,0, 640, 0, 1920),ofMap(p_.y, 0, 480, 0,
         // 1080), 30);
       }

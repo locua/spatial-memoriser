@@ -25,8 +25,12 @@ public:
     ofVideoGrabber cam;
     ofColor targetColor1;
     ofColor targetColor2;
+
     vector <ofParameter<int>> minAreas;
     vector <ofParameter<int>> maxAreas;
+    vector <ofParameter<int>> minAreaRadi;
+    vector <ofParameter<int>> maxAreaRadi;
+
     vector<ofColor> targetColours;
     vector<ofParameter<float>> thresholds;
     vector<ofParameter<bool>> trackHues;
