@@ -240,7 +240,6 @@ void ofApp::mouseEntered(int x, int y){
 }
 
 //--------------------------------------------------------------
-
 void ofApp::saveSettings() {
     // set the cv settings
     ss->settings.pushTag("contourFinders");
@@ -267,7 +266,6 @@ void ofApp::saveSettings() {
     ss->settings.setValue("w", ss->width_height.x);
     ss->settings.setValue("h", ss->width_height.y);
     ss->settings.popTag();
-
     cout << "------------------------------------------------------------------------------" << endl;
     cout << "--------------------------- settings saved -----------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
