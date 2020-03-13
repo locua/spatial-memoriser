@@ -68,18 +68,24 @@ void ofApp::setup() {
         gui.add(thresholds[i].set("Threshold " + to_string(i), 255,0,255));
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), trackHue));
         gui.add(changeColours[i].set("Change colour "+to_string(i), false));
+        // get settings
         int minArea = ss->settings.getValue("minArea", 0);
         int maxArea = ss->settings.getValue("maxArea", 0);
         int minAreaRadius = ss->settings.getValue("minAreaRadius", 0);
         int maxAreaRadius = ss->settings.getValue("maxAreaRadius", 0);
-        gui.add(minAreas[i].set("minArea: " + to_string(i), minArea, 0, 255));
-        gui.add(maxAreas[i].set("maxArea: " + to_string(i), maxArea, 0, 255));
-        gui.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), 40, 0, 255));
-        gui.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), 100, 0, 255));
-        ss->contourFinders[i].setMinArea(minArea);
-        ss->contourFinders[i].setMaxArea(maxArea);
-        ss->contourFinders[i].setMinAreaRadius(minAreaRadius);
-        ss->contourFinders[i].setMaxAreaRadius(maxAreaRadius);
+        // update from settings
+        minAreas[i]=minArea;
+        maxAreas[i]=maxArea;
+        minAreaRadi[i]=minAreaRadius;
+        maxAreaRadi[i]=maxAreaRadius;
+        gui.add(minAreas[i].set("minArea: " + to_string(i), minAreas[i], 0, 400));
+        gui.add(maxAreas[i].set("maxArea: " + to_string(i), maxAreas[i], 0, 400));
+        gui.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), minAreaRadi[i], 0, 255));
+        gui.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), maxAreaRadi[i], 0, 255));
+        ss->contourFinders[i].setMinArea(minAreas[i]);
+        ss->contourFinders[i].setMaxArea(maxAreas[i]);
+        ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
+        ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
         ss->settings.popTag();
     }
     ss->settings.popTag();
@@ -114,6 +120,10 @@ void ofApp::update() {
         for(int i = 0; i < num_colours; i++){
             ss->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
             ss->contourFinders[i].setThreshold(thresholds[i]);
+            ss->contourFinders[i].setMinArea(minAreas[i]);
+            ss->contourFinders[i].setMaxArea(maxAreas[i]);
+            ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
+            ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
             ss->contourFinders[i].findContours(camPix);
         }
     }

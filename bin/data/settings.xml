@@ -1,9 +1,9 @@
 <contourFinders>
     <contourFinder>
-        <minArea>117</minArea>
-        <maxArea>138</maxArea>
+        <minArea>44</minArea>
+        <maxArea>25</maxArea>
         <minAreaRadius>40</minAreaRadius>
-        <maxAreaRadius>100</maxAreaRadius>
+        <maxAreaRadius>33</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
             <r>148</r>
@@ -13,7 +13,7 @@
     </contourFinder>
     <contourFinder>
         <minArea>10</minArea>
-        <maxArea>40</maxArea>
+        <maxArea>124</maxArea>
         <minAreaRadius>40</minAreaRadius>
         <maxAreaRadius>100</maxAreaRadius>
         <trackHue>0</trackHue>
