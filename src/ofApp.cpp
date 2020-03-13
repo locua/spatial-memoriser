@@ -34,9 +34,11 @@ void ofApp::setup() {
 
     // Initialise gui and parameters
     gui.setup();
-    gui.setPosition(50,500);
+    gui.setPosition(50,50);
     ss->settings.loadFile("settings.xml");
     ss->settings.pushTag("contourFinders");
+    gui.add(rectRotate.set("rotation", ss->rot, 0, 360));
+
     for(int i = 0; i < num_colours; i++){
         ofParameter<float> t;
         ofParameter<bool> b;
@@ -68,20 +70,18 @@ void ofApp::setup() {
         gui.add(thresholds[i].set("Threshold " + to_string(i), 255,0,255));
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), trackHue));
         gui.add(changeColours[i].set("Change colour "+to_string(i), false));
-        // get settings
-        int minArea = ss->settings.getValue("minArea", 0);
-        int maxArea = ss->settings.getValue("maxArea", 0);
-        int minAreaRadius = ss->settings.getValue("minAreaRadius", 0);
-        int maxAreaRadius = ss->settings.getValue("maxAreaRadius", 0);
         // update from settings
-        minAreas[i]=minArea;
-        maxAreas[i]=maxArea;
-        minAreaRadi[i]=minAreaRadius;
-        maxAreaRadi[i]=maxAreaRadius;
+        minAreas[i] = ss->settings.getValue("minArea", 0);
+        maxAreas[i] = ss->settings.getValue("maxArea", 0);
+        minAreaRadi[i] = ss->settings.getValue("minAreaRadius", 0);
+        maxAreaRadi[i] = ss->settings.getValue("maxAreaRadius", 0);
+        thresholds[i]=ss->settings.getValue("thresh", 0);
+        // add gui stuff
         gui.add(minAreas[i].set("minArea: " + to_string(i), minAreas[i], 0, 400));
         gui.add(maxAreas[i].set("maxArea: " + to_string(i), maxAreas[i], 0, 400));
-        gui.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), minAreaRadi[i], 0, 255));
-        gui.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), maxAreaRadi[i], 0, 255));
+        gui.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), minAreaRadi[i], 0, 50));
+        gui.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), maxAreaRadi[i], 0, 100));
+        // update contour finders with variables
         ss->contourFinders[i].setMinArea(minAreas[i]);
         ss->contourFinders[i].setMaxArea(maxAreas[i]);
         ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
@@ -147,7 +147,7 @@ void ofApp::draw() {
     // Draw tracking
     ofPopMatrix();
     ofPushMatrix();
-    ofTranslate(700,10);
+    ofTranslate(1700,10);
     for(int i=0; i < num_colours; i ++){
         ofTranslate(0, 75);
         ofFill();
@@ -260,6 +260,7 @@ void ofApp::saveSettings() {
     ss->settings.pushTag("contourFinders");
     for(int i = 0; i < ss->num_colours; i++){
         ss->settings.pushTag("contourFinder", i);
+        ss->settings.setValue("thresh", thresholds[i]);
         ss->settings.setValue("trackHue", trackHues[i]);
         ss->settings.setValue("minArea", minAreas[i]);
         ss->settings.setValue("maxArea", maxAreas[i]);

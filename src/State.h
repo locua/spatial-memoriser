@@ -24,6 +24,8 @@ public:
         rectPos.set(20, 20);
         width_height.set(1900, 1060);
         corners=false;
+
+        rot = 0;
     }
     int num_colours=5;
     vector<cv::Point2f> centers;
@@ -45,6 +47,7 @@ public:
     ofVec2f width_height;
     ofxXmlSettings settings;
     bool corners;
+    int rot;
 };
 
 #endif

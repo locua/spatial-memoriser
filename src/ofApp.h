@@ -51,6 +51,8 @@ public:
     ofPixels camPix;
     /* ofRectangle rect; */
     int xr, yr, wr, hr;
-    bool xyb, whb;
+    bool xyb, whb, rotc;
+
+    ofParameter<int> rectRotate;
 };
 
