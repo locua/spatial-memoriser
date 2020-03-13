@@ -1,14 +1,14 @@
 <contourFinders>
     <contourFinder>
-        <minArea>10</minArea>
-        <maxArea>40</maxArea>
+        <minArea>117</minArea>
+        <maxArea>138</maxArea>
         <minAreaRadius>40</minAreaRadius>
         <maxAreaRadius>100</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>205</r>
-            <g>245</g>
-            <b>230</b>
+            <r>148</r>
+            <g>181</g>
+            <b>162</b>
         </threshold>
     </contourFinder>
     <contourFinder>
@@ -61,8 +61,8 @@
     </contourFinder>
 </contourFinders>
 <projectPositions>
-    <x>269.000000000</x>
-    <y>156.000000000</y>
-    <w>1367.000000000</w>
-    <h>715.000000000</h>
+    <x>303.000000000</x>
+    <y>111.000000000</y>
+    <w>1339.000000000</w>
+    <h>740.000000000</h>
 </projectPositions>
