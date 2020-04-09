@@ -48,6 +48,7 @@ public:
     ofxXmlSettings settings;
     bool corners;
     int rot;
+    ofVec2f camPix;
 };
 
 #endif

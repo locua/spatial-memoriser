@@ -1,5 +1,5 @@
 * Spatial memoriser
 
-[[file:screenshot1.jpg]]
+[[file:imgs/screenshot1.jpg]]
 
-[[file:Screenshot2.png]]
+[[file:imgs/Screenshot2.png]]

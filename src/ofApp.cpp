@@ -115,6 +115,8 @@ void ofApp::update() {
     camPix = cam.getPixels();
     camPix.cropTo(camPix, ss->rectPos.x, ss->rectPos.y, ss->width_height.x, ss->width_height.y);
     // check new frame
+    // cout << camPix.getWidth() << endl;
+    // cout << camPix.getHeight() << endl;
     if(cam.isFrameNew()) {
         // Loop for number of colours and track target colours
         for(int i = 0; i < num_colours; i++){
@@ -184,6 +186,8 @@ void ofApp::draw() {
 
     // Debugging
     //cout << targetColours.size() << endl;
+    ss->camPix.x = 1920;
+    ss->camPix.y = 1080;
 }
 
 //--------------------------------------------------------------
@@ -286,4 +290,7 @@ void ofApp::saveSettings() {
     cout << "--------------------------- settings saved -----------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
+
+    ss->camPix.x = camPix.getWidth();
+    ss->camPix.y = camPix.getHeight();
 }

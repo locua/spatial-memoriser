@@ -43,7 +43,7 @@ public:
     shared_ptr<Projector> projector;
     // Shared state
     shared_ptr<State> ss;
-    // Position variable
+   // Position variable
     ofVec2f point;
     vector<bool> vn;
 
