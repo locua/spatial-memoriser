@@ -26,8 +26,8 @@ public:
     ofColor targetColor1;
     ofColor targetColor2;
 
-    vector <ofParameter<int>> minAreas;
-    vector <ofParameter<int>> maxAreas;
+    vector <ofParameter<int>> minareas;
+    vector <ofParameter<int>> maxareas;
     vector <ofParameter<int>> minAreaRadi;
     vector <ofParameter<int>> maxAreaRadi;
 

@@ -19,10 +19,12 @@ int main() {
     settings.resizable = false;
     shared_ptr<ofAppBaseWindow> projectorWindow = ofCreateWindow(settings);
 
+    // main app and projector app
     shared_ptr<ofApp> mainApp(new ofApp);
     shared_ptr<Projector> projectorApp(new Projector);
     mainApp->projector = projectorApp;
 
+    // class for shared variables
     shared_ptr<State> sharedState(new State);
     mainApp->ss = sharedState;
     projectorApp->sharedState = sharedState;
