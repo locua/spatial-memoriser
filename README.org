@@ -1,6 +1,6 @@
 * Spatial memoriser
 
-[[https://gitlab.doc.gold.ac.uk/ljame002/report/-/blob/master/final/dis.org]]
+[[https://gitlab.doc.gold.ac.uk/ljame002/report/-/blob/master/final/dis.pdf]]
 
 [[file:imgs/screenshot1.jpg]]
 
