@@ -1,0 +1,4 @@
+bin/
+*.qbs
+*.qbs.user
+obj
