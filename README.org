@@ -4,7 +4,6 @@
 - Display = Landscape flipped
 
 
-
 [[file:imgs/Screenshot2.png]]
 
 [[file:imgs/1st-touch.jpg]]
