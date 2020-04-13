@@ -4,6 +4,7 @@
 - Display = Landscape flipped
 
 
-[[file:imgs/screenshot1.jpg]]
 
 [[file:imgs/Screenshot2.png]]
+
+[[file:imgs/1st-touch.jpg]]

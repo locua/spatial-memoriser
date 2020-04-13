@@ -5,6 +5,7 @@
 void Projector::setup() {
     corners = false;
     bFullscreen = 0;
+    ofSetCircleResolution(50);
 }
 
 //-------------------------------------------------------------
@@ -30,6 +31,7 @@ void Projector::draw(){
         p_.y = ofMap(p_.y, 0, sharedState->width_height.y, 0, 1080);
         // p_.x+=sharedState->rectPos.x;
         // p_.y+=sharedState->rectPos.y;
+        ofSetLineWidth(3);
         ofDrawCircle(p_.x, p_.y, 100);
       }
     }
