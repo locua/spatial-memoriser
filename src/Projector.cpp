@@ -26,12 +26,10 @@ void Projector::draw(){
         p_ = sharedState->contourFinders[i].getCenter(j);
         ofSetColor(255, 200, 255);
         ofNoFill();
-        // p_.x = ofMap(p_.x, 0, ofGetWidth(), sharedState->rectPos.x, sharedState->width_height.x);
-        // p_.y = ofMap(p_.y, 0, ofGetHeight(), sharedState->rectPos.y, sharedState->width_height.y);
-        p_.x = ofMap(p_.x, 0, sharedState->camPix.x, 0, ofGetWidth());
-        p_.x = ofMap(p_.y, 0, sharedState->camPix.y, 0, ofGetHeight());
-        // p_.x-=sharedState->rectPos.x;
-        // p_.y -= sharedState->rectPos.y;
+        p_.x = ofMap(p_.x, 0, sharedState->width_height.x, 0, 1920);
+        p_.y = ofMap(p_.y, 0, sharedState->width_height.y, 0, 1080);
+        // p_.x+=sharedState->rectPos.x;
+        // p_.y+=sharedState->rectPos.y;
         ofDrawCircle(p_.x, p_.y, 100);
       }
     }
@@ -58,6 +56,10 @@ void Projector::keyPressed(int key){
         bFullscreen=1;
       }
     }
+}
+
+void Projector::mem(int x, int y){
+    
 }
 
 void Projector::keyReleased(int key){

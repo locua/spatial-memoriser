@@ -15,6 +15,7 @@ class Projector: public ofBaseApp {
     void keyReleased(int key);
     void mouseDragged(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
+    void mem(int x, int y);
     bool bFullscreen;
     float xp1, yp1;
     int gwidth, gheight;
@@ -23,7 +24,6 @@ class Projector: public ofBaseApp {
 
     shared_ptr<State> sharedState;
     /* ProjectorSource pSource; */
-
 
 };
 

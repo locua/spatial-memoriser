@@ -246,6 +246,12 @@ void ofApp::mouseDragged(int x, int y, int button){
     if (whb) {
         ss->set_width_height(mouseX-ss->rectPos.x, mouseY-ss->rectPos.y);
     }
+
+    // ss->camPix.x = camPix.getWidth();
+    // ss->camPix.y = camPix.getHeight();
+
+    // cout << ss->camPix.x << endl;
+    // cout << ss->camPix.x << endl;
 }
 
 //--------------------------------------------------------------
@@ -291,6 +297,4 @@ void ofApp::saveSettings() {
     cout << "------------------------------------------------------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 
-    ss->camPix.x = camPix.getWidth();
-    ss->camPix.y = camPix.getHeight();
 }
