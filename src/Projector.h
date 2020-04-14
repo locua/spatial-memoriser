@@ -22,7 +22,7 @@ class Projector: public ofBaseApp {
     bool corners;
     float mapx, mapy;
 
-    shared_ptr<State> sharedState;
+    shared_ptr<State> ss;
     /* ProjectorSource pSource; */
 
 };

@@ -1,7 +1,6 @@
 * Spatial memoriser
-
 - [[https://gitlab.doc.gold.ac.uk/ljame002/report]]
-- Display = Landscape flipped
+- Display = Landscape flipped...
 
 
 [[file:imgs/Screenshot2.png]]

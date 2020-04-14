@@ -27,7 +27,7 @@ int main() {
     // class for shared variables
     shared_ptr<State> sharedState(new State);
     mainApp->ss = sharedState;
-    projectorApp->sharedState = sharedState;
+    projectorApp->ss = sharedState;
 
     ofRunApp(projectorWindow, projectorApp);
     ofRunApp(mainWindow, mainApp);
