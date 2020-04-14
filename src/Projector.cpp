@@ -7,6 +7,9 @@ void Projector::setup() {
     corners = false;
     bFullscreen = 0;
     ofSetCircleResolution(50);
+
+    mw = ofGetWidth();
+    mh = ofGetHeight();
 }
 
 //-------------------------------------------------------------
@@ -38,12 +41,26 @@ void Projector::draw(){
     }
     // Draw corners
     ofFill();
-    ofSetColor(255, 200, 200);
     if(ss->corners){
+         ofSetColor(255, 200, 200);
          ofDrawTriangle(0, 0, 200, 0, 0, 200);
          ofDrawTriangle(ofGetWidth(), 0, ofGetWidth()-200, 0, ofGetWidth(), 200);
          ofDrawTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight()-200, ofGetWidth()-200, ofGetHeight());
          ofDrawTriangle(0, ofGetHeight(), 200, ofGetHeight(), 0, ofGetHeight()-200);
+
+         // chequerboard
+         // int x = 0;
+         // for (int i = 0; i < mw; i+=30 ){
+         //   for (int j = 0; j < mh; j+=30) {
+         //     if (x % 2 == 0) {
+         //         ofSetColor(255);
+         //     } else {
+         //         ofSetColor(0);
+         //     }
+         //     ofDrawRectangle(i, j, 30, 30);
+         //     x += 1;
+         //   }
+         // }
     }
 }
 

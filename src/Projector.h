@@ -25,5 +25,6 @@ class Projector: public ofBaseApp {
     shared_ptr<State> ss;
     /* ProjectorSource pSource; */
 
+    int mw, mh;
 };
 
