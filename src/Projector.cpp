@@ -1,5 +1,6 @@
 #include "Projector.h"
 #include "ofApp.h"
+#include <bits/stdc++.h>
 
 //--------------------------------------------------------------
 void Projector::setup() {
@@ -74,4 +75,9 @@ void Projector::mouseReleased(int x, int y, int button){
 }
 
 void Projector::mousePressed(int x, int y, int button){
+    string str = "echo 'HELLO WORLD'";
+    // Convert string to const char * as system requires
+    // parameter of type const char *
+    const char *command = str.c_str();
+    system(command);
 }

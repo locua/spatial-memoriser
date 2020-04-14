@@ -16,7 +16,7 @@ int main() {
 
     settings.setSize(1920, 1080);
     settings.setPosition(glm::vec2(0,0));
-    settings.resizable = false;
+    settings.resizable = true;
     shared_ptr<ofAppBaseWindow> projectorWindow = ofCreateWindow(settings);
 
     // main app and projector app
