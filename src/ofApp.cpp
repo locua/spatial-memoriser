@@ -212,7 +212,14 @@ void ofApp::keyPressed(int key){
             ss->corners=true;
         }
     }
-
+    // Toggle chequerboard
+    if (key == 'C') {
+      if (ss->chequer) {
+        ss->chequer = false;
+      } else {
+        ss->chequer = true;
+      }
+    }
 }
 
 //--------------------------------------------------------------

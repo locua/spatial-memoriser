@@ -24,7 +24,7 @@ public:
         rectPos.set(20, 20);
         width_height.set(1900, 1060);
         corners=false;
-
+        chequer=false;
         rot = 0;
     }
     int num_colours=5;
@@ -46,7 +46,7 @@ public:
     ofVec2f rectPos;
     ofVec2f width_height;
     ofxXmlSettings settings;
-    bool corners;
+    bool corners, chequer;
     int rot;
     ofVec2f camPix;
 };
