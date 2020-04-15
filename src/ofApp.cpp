@@ -195,6 +195,17 @@ void ofApp::mousePressed(int x, int y, int button) {
     for(int i = 0; i < num_colours; i++) {
         if(changeColours[i]==true) targetColours[i]=cam.getPixels().getColor(x, y);
     }
+
+    string str = "echo 'HELLO WORLD'";
+    string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
+    string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+    // Convert string to const char * as system requires
+    // parameter of type const char *
+    const char *command = cm1.c_str();
+    system(command);
+    command = cm2.c_str();
+    system(command);
+
 }
 
 //--------------------------------------------------------------

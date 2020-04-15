@@ -23,8 +23,6 @@ class Projector: public ofBaseApp {
     float mapx, mapy;
 
     shared_ptr<State> ss;
-    /* ProjectorSource pSource; */
-
-    int mw, mh;
+    int mw, mh, inc;
 };
 

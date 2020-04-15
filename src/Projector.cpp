@@ -52,9 +52,9 @@ void Projector::draw(){
 
     if(ss->chequer){
       // chequerboard
-      int inc = 0;
-      for (int i = 0; i < mw; i += 30) {
-        for (int j = 0; j < mh; j += 30) {
+      inc = 0;
+      for (auto i = 0; i < mw; i += 30) {
+        for (auto j = 0; j < mh; j += 30) {
           if (inc % 2 == 0) {
             ofSetColor(255, 200, 200);
           } else {
