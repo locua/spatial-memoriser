@@ -6,3 +6,4 @@
 [[file:imgs/Screenshot2.png]]
 * Commit dbf7c3ff5a2464124f7d02b78b415e78aded25be :
 [[file:imgs/1st-touch.jpg]]
+* Use json instead of xml [[https://github.com/nlohmann/json]]

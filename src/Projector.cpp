@@ -39,19 +39,9 @@ void Projector::draw(){
         ofDrawCircle(p_.x, p_.y, 100);
       }
     }
-    // Draw corners
-    ofFill();
-    if(ss->corners){
-         ofSetColor(255, 200, 200);
-         ofDrawTriangle(0, 0, 200, 0, 0, 200);
-         ofDrawTriangle(ofGetWidth(), 0, ofGetWidth()-200, 0, ofGetWidth(), 200);
-         ofDrawTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight()-200, ofGetWidth()-200, ofGetHeight());
-         ofDrawTriangle(0, ofGetHeight(), 200, ofGetHeight(), 0, ofGetHeight()-200);
 
-    }
-
+    // chequerboard
     if(ss->chequer){
-      // chequerboard
       inc = 0;
       for (auto i = 0; i < mw; i += 30) {
         for (auto j = 0; j < mh; j += 30) {
@@ -66,6 +56,15 @@ void Projector::draw(){
         inc++;
       }
     }
+    // Draw corners
+    ofFill();
+    if (ss->corners) {
+      ofSetColor(200, 255, 200);
+      ofDrawTriangle(0, 0, 200, 0, 0, 200);
+      ofDrawTriangle(ofGetWidth(), 0, ofGetWidth() - 200, 0, ofGetWidth(), 200);
+      ofDrawTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight() - 200, ofGetWidth() - 200, ofGetHeight());
+      ofDrawTriangle(0, ofGetHeight(), 200, ofGetHeight(), 0, ofGetHeight() - 200);
+    }
 }
 
 //--------------------------------------------------------------
@@ -79,6 +78,12 @@ void Projector::keyPressed(int key){
         ofSetFullscreen(true);
         bFullscreen=1;
       }
+    }
+
+    // text dialog
+    if(key=='t'){
+        string out = ofSystemTextBoxDialog("Hi hows you?");
+        cout << out << endl;
     }
 }
 
@@ -96,9 +101,9 @@ void Projector::mouseReleased(int x, int y, int button){
 }
 
 void Projector::mousePressed(int x, int y, int button){
-    string str = "echo 'HELLO WORLD'";
-    // Convert string to const char * as system requires
-    // parameter of type const char *
-    const char *command = str.c_str();
-    system(command);
+    // string str = "echo 'HELLO WORLD'";
+    // // Convert string to const char * as system requires
+    // // parameter of type const char *
+    // const char *command = str.c_str();
+    // system(command);
 }

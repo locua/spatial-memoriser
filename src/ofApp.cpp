@@ -126,7 +126,7 @@ void ofApp::update() {
             ss->contourFinders[i].setMaxArea(maxareas[i]);
             ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
             ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
-            ss->contourFinders[i].findContours(camPix);
+            if(ss->find) ss->contourFinders[i].findContours(camPix);
         }
     }
 }
