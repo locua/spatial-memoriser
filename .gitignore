@@ -1,4 +1,6 @@
-bin/
 *.qbs
 *.qbs.user
 obj
+project0-ofxcv-of-pure
+project0-ofxcv-of-pure_debug
+libfmodex.so
