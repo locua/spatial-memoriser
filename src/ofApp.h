@@ -55,5 +55,8 @@ public:
     bool xyb, whb, rotc;
 
     ofParameter<int> rectRotate;
+    ofEasyCam easy_cam;
+    bool zoom;
+
 };
 

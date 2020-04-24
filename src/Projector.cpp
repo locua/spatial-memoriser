@@ -39,8 +39,8 @@ void Projector::draw(){
         ofDrawCircle(p_.x, p_.y, 100);
       }
     }
-
     // chequerboard
+    ofFill();
     if(ss->chequer){
       inc = 0;
       for (auto i = 0; i < mw; i += 30) {

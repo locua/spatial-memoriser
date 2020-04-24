@@ -20,6 +20,7 @@ void ofApp::setup() {
     int camId = 2;
     int wwidth = 1920;
     int wheight = 1080;
+    zoom=false;
     ofSetWindowShape(wwidth, wheight);
     // Select camera
     cam.setDeviceID(camId);
@@ -133,6 +134,11 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+
+    if (zoom) {
+    easy_cam.begin();
+    ofTranslate(-ofGetWidth() / 2, -ofGetHeight() / 2);
+    }
     ofSetColor(255);
     // Draw camera
     cam.draw(0, 0);
@@ -141,26 +147,13 @@ void ofApp::draw() {
     ofSetLineWidth(3);
     // Draw gui
     ofPushMatrix();
-    gui.draw();
     // Draw contours found
     ofTranslate(ss->rectPos.x, ss->rectPos.y);
     for(int i=0; i < num_colours; i ++)
         ss->contourFinders[i].draw();
     // Draw tracking
     ofPopMatrix();
-    ofPushMatrix();
-    ofTranslate(1700,10);
-    for(int i=0; i < num_colours; i ++){
-        ofTranslate(0, 75);
-        ofFill();
-        ofSetColor(0);
-        ofDrawRectangle(-3, -3, 64+6, 64+6);
-        ofSetColor(targetColours[i]);
-        ofDrawRectangle(0, 0, 64, 64);
-    }
-    ofPopMatrix();
-
-    // draw crop rect and circles
+        // draw crop rect and circles
     ofPushMatrix();
     ofSetColor(100, 244, 244, 100);
     ofFill();
@@ -175,7 +168,7 @@ void ofApp::draw() {
     if(whb==true){
         ofDrawCircle(ss->rectPos.x+ss->width_height.x, ss->rectPos.y+ss->width_height.y, 30);
     }
-    ofFill();
+    ofNoFill();
     ofSetColor(ofColor(255, 200, 233, 40));
     ofDrawRectangle(ss->rectPos.x, ss->rectPos.y,
                     ss->width_height.x, ss->width_height.y);
@@ -188,6 +181,21 @@ void ofApp::draw() {
     //cout << targetColours.size() << endl;
     ss->camPix.x = 1920;
     ss->camPix.y = 1080;
+    if(zoom) easy_cam.end();
+
+    // GUI
+    gui.draw();
+    ofPushMatrix();
+    ofTranslate(1700, 10);
+    for (int i = 0; i < num_colours; i++) {
+      ofTranslate(0, 75);
+      ofFill();
+      ofSetColor(0);
+      ofDrawRectangle(-3, -3, 64 + 6, 64 + 6);
+      ofSetColor(targetColours[i]);
+      ofDrawRectangle(0, 0, 64, 64);
+    }
+    ofPopMatrix();
 }
 
 //--------------------------------------------------------------
@@ -195,17 +203,6 @@ void ofApp::mousePressed(int x, int y, int button) {
     for(int i = 0; i < num_colours; i++) {
         if(changeColours[i]==true) targetColours[i]=cam.getPixels().getColor(x, y);
     }
-
-    string str = "echo 'HELLO WORLD'";
-    string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
-    string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
-    // Convert string to const char * as system requires
-    // parameter of type const char *
-    const char *command = cm1.c_str();
-    system(command);
-    command = cm2.c_str();
-    system(command);
-
 }
 
 //--------------------------------------------------------------
@@ -230,6 +227,22 @@ void ofApp::keyPressed(int key){
       } else {
         ss->chequer = true;
       }
+    }
+    if(key=='r'){
+        string str = "echo 'HELLO WORLD'";
+        string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
+        string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+        // Convert string to const char * as system requires
+        // parameter of type const char *
+        const char *command = cm1.c_str();
+        system(command);
+        command = cm2.c_str();
+        system(command);
+    }
+
+    if(key=='z'){
+        if(zoom) zoom=false;
+        else zoom=true;
     }
 }
 
