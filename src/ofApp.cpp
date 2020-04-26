@@ -230,8 +230,10 @@ void ofApp::keyPressed(int key){
     }
     if(key=='r'){
         string str = "echo 'HELLO WORLD'";
-        string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
-        string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+        string cm1 = "v4l2-ctl -d /dev/video3 -c focus_auto=0";
+        string cm2 = "v4l2-ctl -d /dev/video3 -c focus_absolute=0";
+        string cm2 = "v4l2-ctl -d /dev/video3 -c exposure_auto=0";
+        string cm2 = "v4l2-ctl -d /dev/video3 -c white_balance_temperature_auto=0";
         // Convert string to const char * as system requires
         // parameter of type const char *
         const char *command = cm1.c_str();
