@@ -8,6 +8,8 @@
 
 class State {
 public:
+
+    // Initialise
     State(){
         ofVec3f v1;
         ofVec3f v2;
@@ -27,10 +29,13 @@ public:
         chequer=false;
         find=true;
     }
+    // CV vars
     int num_colours=5;
     vector<cv::Point2f> centers;
     vector<ofxCv::ContourFinder> contourFinders;
     vector<ofVec3f> proPoints;
+
+    // set variable methods
     void setvx(int i, int val){
         proPoints[i].x = val;
     };
