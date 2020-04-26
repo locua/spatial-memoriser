@@ -4,10 +4,11 @@
 
 //--------------------------------------------------------------
 void Projector::setup() {
+    // initialise variables
     corners = false;
     bFullscreen = 0;
     ofSetCircleResolution(50);
-
+    // initialise width and height
     mw = ofGetWidth();
     mh = ofGetHeight();
 }
@@ -22,24 +23,28 @@ void Projector::draw(){
     // for(int i =0; i < ss->num_colours; i++){
     //     ss->contourFinders[i].draw();
     // }
-    ofBackground(0);
+    // Loop over each colour
     for (int i = 0; i < ss->num_colours; i++) {
       // ss->contourFinders[i].draw();
+      // Get tracking data and loop
       vector<cv::Rect> boundingRects = ss->contourFinders[i].getBoundingRects();
       for (unsigned int j = 0; j < boundingRects.size(); j++) {
         cv::Point2f p_;
+        // Get centre of blob
         p_ = ss->contourFinders[i].getCenter(j);
         ofSetColor(255, 200, 255);
         ofNoFill();
+        // map cropped camera to window
         p_.x = ofMap(p_.x, 0, ss->width_height.x, 0, 1920);
         p_.y = ofMap(p_.y, 0, ss->width_height.y, 0, 1080);
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
         ofSetLineWidth(3);
+        // Circle object
         ofDrawCircle(p_.x, p_.y, 100);
       }
     }
-    // chequerboard
+    // Draw chequerboard if on
     ofFill();
     if(ss->chequer){
       inc = 0;
@@ -56,7 +61,7 @@ void Projector::draw(){
         inc++;
       }
     }
-    // Draw corners
+    // Draw corners if on
     ofFill();
     if (ss->corners) {
       ofSetColor(200, 255, 200);
@@ -79,8 +84,7 @@ void Projector::keyPressed(int key){
         bFullscreen=1;
       }
     }
-
-    // text dialog
+    // testing text dialog
     if(key=='t'){
         string out = ofSystemTextBoxDialog("Hi hows you?");
         cout << out << endl;
@@ -101,9 +105,4 @@ void Projector::mouseReleased(int x, int y, int button){
 }
 
 void Projector::mousePressed(int x, int y, int button){
-    // string str = "echo 'HELLO WORLD'";
-    // // Convert string to const char * as system requires
-    // // parameter of type const char *
-    // const char *command = str.c_str();
-    // system(command);
 }

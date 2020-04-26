@@ -22,39 +22,44 @@ public:
     void mouseReleased(int x, int y, int button);
     void mouseEntered(int x, int y);
     void saveSettings();
+
     // CV variables
     ofVideoGrabber cam;
     ofColor targetColor1;
     ofColor targetColor2;
+    ofImage camImage;
+    ofPixels camPix;
+    int num_colours = 5;
 
+    // CV parameters
     vector <ofParameter<int>> minareas;
     vector <ofParameter<int>> maxareas;
     vector <ofParameter<int>> minAreaRadi;
     vector <ofParameter<int>> maxAreaRadi;
-
     vector<ofColor> targetColours;
     vector<ofParameter<float>> thresholds;
     vector<ofParameter<bool>> trackHues;
     vector<ofParameter<bool>> changeColours;
     vector<ofxCv::ContourFinder> contourFinders;
-    int num_colours = 5;
+
     // Gui
     ofxPanel gui;
+
     // projector class for second window display
     shared_ptr<Projector> projector;
+
     // Shared state
     shared_ptr<State> ss;
-   // Position variable
+
+    // Position variable
     ofVec2f point;
     vector<bool> vn;
 
-    ofImage camImage;
-    ofPixels camPix;
     /* ofRectangle rect; */
     int xr, yr, wr, hr;
     bool xyb, whb, rotc;
 
-    ofParameter<int> rectRotate;
+    // Zoom vars
     ofEasyCam easy_cam;
     bool zoom;
 

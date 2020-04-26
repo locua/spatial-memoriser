@@ -10,20 +10,23 @@ ofApp::~ofApp(){
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+    // Welcome message
     cout << "------------------------------------------------------------------------------" << endl;
-    cout << "--------------------------- Welcome ------ to mem  ---------------------------" << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
+    cout << "--------------------------- Welcome ------------------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 
     // cam.listDevices();
+
     // camera and window setup
-    int camId = 2;
+    int camId = 2; // 1 = internal, 2 external
     int wwidth = 1920;
     int wheight = 1080;
     zoom=false;
     ofSetWindowShape(wwidth, wheight);
+
     // Select camera
     cam.setDeviceID(camId);
+
     // Alternative camera settings for different cams
     if(camId==2){
         cam.setup(1920, 1080);
@@ -38,8 +41,10 @@ void ofApp::setup() {
     gui.setPosition(50,50);
     ss->settings.loadFile("settings.xml");
     ss->settings.pushTag("contourFinders");
-    gui.add(rectRotate.set("rotation", ss->rot, 0, 360));
 
+    // For each tracked colour:
+    /* - Initialise tracking objects and parameters
+       - Grab settings from disk */
     for(int i = 0; i < num_colours; i++){
         ofParameter<float> t;
         ofParameter<bool> b;
@@ -56,7 +61,7 @@ void ofApp::setup() {
         ofParameter<int> maxarearad;
         minAreaRadi.push_back(minarearad);
         maxAreaRadi.push_back(maxarearad);
-        // contourFinders.push_back(cf);
+
         // Load values from settings.xml and set values
         ss->settings.pushTag("contourFinder", i);
         ss->contourFinders.push_back(cf);
@@ -66,22 +71,24 @@ void ofApp::setup() {
         int b_ = ss->settings.getValue("b", 0);
         ss->settings.popTag();
         targetColours.push_back(ofColor(r, g, b_));
-        // cout << r << g << b_ << endl;
         bool trackHue = ss->settings.getValue("trackHue", 0);
         gui.add(thresholds[i].set("Threshold " + to_string(i), 255,0,255));
         gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), trackHue));
         gui.add(changeColours[i].set("Change colour "+to_string(i), false));
+
         // update from settings
         minareas[i] = ss->settings.getValue("minArea", 0);
         maxareas[i] = ss->settings.getValue("maxArea", 0);
         minAreaRadi[i] = ss->settings.getValue("minAreaRadius", 0);
         maxAreaRadi[i] = ss->settings.getValue("maxAreaRadius", 0);
         thresholds[i]=ss->settings.getValue("thresh", 0);
-        // add gui stuff
+
+        // Add gui parameters
         gui.add(minareas[i].set("minArea: " + to_string(i), minareas[i], 0, 400));
         gui.add(maxareas[i].set("maxArea: " + to_string(i), maxareas[i], 0, 400));
         gui.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), minAreaRadi[i], 0, 50));
         gui.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), maxAreaRadi[i], 0, 100));
+
         // update contour finders with variables
         ss->contourFinders[i].setMinArea(minareas[i]);
         ss->contourFinders[i].setMaxArea(maxareas[i]);
@@ -89,8 +96,7 @@ void ofApp::setup() {
         ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
         ss->settings.popTag();
     }
-    ss->settings.popTag();
-
+    ss->settings.popTag(); // pop tag
 
     // set camera crop / projector position
     ss->settings.pushTag("projectPositions");
@@ -98,6 +104,7 @@ void ofApp::setup() {
     ss->set_width_height(ss->settings.getValue("w", 0), ss->settings.getValue("h", 0));
     ss->settings.popTag();
 
+    // Bools for ???
     for(int i = 0; i < 4; i++){
         vn.push_back(false);
     }
@@ -105,28 +112,34 @@ void ofApp::setup() {
     // corner booleans initialise to false
     xyb=false;
     whb=false;
-    //Settings
+
+    // Save Settings
     // ss->settings.saveFile("settings.xml");
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    // update camera
+    // update camera and crop to area
     cam.update();
     camPix = cam.getPixels();
     camPix.cropTo(camPix, ss->rectPos.x, ss->rectPos.y, ss->width_height.x, ss->width_height.y);
+
     // check new frame
     // cout << camPix.getWidth() << endl;
     // cout << camPix.getHeight() << endl;
+
+    // Check new frame  and ...
     if(cam.isFrameNew()) {
         // Loop for number of colours and track target colours
         for(int i = 0; i < num_colours; i++){
+            // Set contour finders with params
             ss->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
             ss->contourFinders[i].setThreshold(thresholds[i]);
             ss->contourFinders[i].setMinArea(minareas[i]);
             ss->contourFinders[i].setMaxArea(maxareas[i]);
             ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
             ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
+            // if finding: find // cv on / off
             if(ss->find) ss->contourFinders[i].findContours(camPix);
         }
     }
@@ -135,33 +148,38 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
 
+    // Zoom ?? Doesn't map mouse position so can't select the correct colour when zoomed
     if (zoom) {
-    easy_cam.begin();
-    ofTranslate(-ofGetWidth() / 2, -ofGetHeight() / 2);
+        easy_cam.begin();
+        ofTranslate(-ofGetWidth() / 2, -ofGetHeight() / 2);
     }
-    ofSetColor(255);
+
+
     // Draw camera
+    ofSetColor(255);
     cam.draw(0, 0);
     camImage.setFromPixels(camPix);
     // camImage.draw(0,0);
     ofSetLineWidth(3);
+
     // Draw gui
     ofPushMatrix();
     // Draw contours found
     ofTranslate(ss->rectPos.x, ss->rectPos.y);
     for(int i=0; i < num_colours; i ++)
         ss->contourFinders[i].draw();
-    // Draw tracking
     ofPopMatrix();
-        // draw crop rect and circles
+
+    // draw corner circles
     ofPushMatrix();
     ofSetColor(100, 244, 244, 100);
     ofFill();
     ofSetColor(255, 200, 200);
     ofDrawCircle(ss->rectPos.x, ss->rectPos.y, 10);
-    ofDrawCircle(ss->rectPos.x + ss->width_height.x,
-                 ss->rectPos.y + ss->width_height.y, 10);
+    ofDrawCircle(ss->rectPos.x + ss->width_height.x, ss->rectPos.y + ss->width_height.y, 10);
     ofNoFill();
+
+    // Draw corners if hovered
     if(xyb==true){
         ofDrawCircle(ss->rectPos.x, ss->rectPos.y, 30);
     }
@@ -170,20 +188,15 @@ void ofApp::draw() {
     }
     ofNoFill();
     ofSetColor(ofColor(255, 200, 233, 40));
-    ofDrawRectangle(ss->rectPos.x, ss->rectPos.y,
-                    ss->width_height.x, ss->width_height.y);
+    ofDrawRectangle(ss->rectPos.x, ss->rectPos.y, ss->width_height.x, ss->width_height.y);
     ofPopMatrix();
 
-    // img1.setFromPixels(img1Pix);
-    // img1.draw(700,200);
-
-    // Debugging
-    //cout << targetColours.size() << endl;
+    // ???????
     ss->camPix.x = 1920;
     ss->camPix.y = 1080;
     if(zoom) easy_cam.end();
 
-    // GUI
+    // Draw GUI
     gui.draw();
     ofPushMatrix();
     ofTranslate(1700, 10);
@@ -200,6 +213,7 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
+    // if Change colour is true change colour to colour at mouse coords
     for(int i = 0; i < num_colours; i++) {
         if(changeColours[i]==true) targetColours[i]=cam.getPixels().getColor(x, y);
     }
@@ -207,11 +221,16 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+
     // Save settings to disk
     if(key=='s') {
       saveSettings();
       ss->settings.saveFile("settings.xml");
+      cout << "------------------------------------------------------" << endl;
+      cout << "--------------- settings saved -----------------------" << endl;
+      cout << "------------------------------------------------------" << endl;
     }
+
     // Toggle corners bool
     if(key=='c'){
         if(ss->corners) {
@@ -220,6 +239,7 @@ void ofApp::keyPressed(int key){
             ss->corners=true;
         }
     }
+
     // Toggle chequerboard
     if (key == 'C') {
       if (ss->chequer) {
@@ -228,12 +248,14 @@ void ofApp::keyPressed(int key){
         ss->chequer = true;
       }
     }
+
+    // 'r' key resets camera settings
     if(key=='r'){
         string str = "echo 'HELLO WORLD'";
-        string cm1 = "v4l2-ctl -d /dev/video3 -c focus_auto=0";
-        string cm2 = "v4l2-ctl -d /dev/video3 -c focus_absolute=0";
-        string cm2 = "v4l2-ctl -d /dev/video3 -c exposure_auto=0";
-        string cm2 = "v4l2-ctl -d /dev/video3 -c white_balance_temperature_auto=0";
+        string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
+        string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+        string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
+        string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
         // Convert string to const char * as system requires
         // parameter of type const char *
         const char *command = cm1.c_str();
@@ -242,6 +264,7 @@ void ofApp::keyPressed(int key){
         system(command);
     }
 
+    // z key toggles zoom mode
     if(key=='z'){
         if(zoom) zoom=false;
         else zoom=true;
@@ -249,56 +272,53 @@ void ofApp::keyPressed(int key){
 }
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
-}
+void ofApp::keyReleased(int key){}
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-    // Crop area handles
+    // Crop-area hover logic.
+    /*-----------------------*/
+    // If hovering at top left of rect xyb is true
     if(ofDist(mouseX, mouseY, ss->rectPos.x, ss->rectPos.y) < 20){
         xyb=true;
     } else {
         xyb=false;
     }
+
+    // If hovering at bottom right of rect whb is true
     if (ofDist(mouseX, mouseY,
                ss->rectPos.x + ss->width_height.x,
                ss->rectPos.y + ss->width_height.y) < 20) {
-      whb = true;
+        whb = true;
     } else {
-      whb = false;
+        whb = false;
     }
+    /*-----------------------*/
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-    // Update crop control anchors
+
+    // Update crop control anchors if dragged
     if (xyb) {
         ss->set_rectPos(mouseX, mouseY);
     }
     if (whb) {
         ss->set_width_height(mouseX-ss->rectPos.x, mouseY-ss->rectPos.y);
     }
-
-    // ss->camPix.x = camPix.getWidth();
-    // ss->camPix.y = camPix.getHeight();
-
-    // cout << ss->camPix.x << endl;
-    // cout << ss->camPix.x << endl;
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
-
 }
 
 //--------------------------------------------------------------
 void ofApp::saveSettings() {
+
     // set the cv settings
     ss->settings.pushTag("contourFinders");
     for(int i = 0; i < ss->num_colours; i++){
@@ -318,15 +338,12 @@ void ofApp::saveSettings() {
         ss->settings.popTag();
     }
     ss->settings.popTag();
-    // Projector position set
+
+    // Projection position set
     ss->settings.pushTag("projectPositions");
     ss->settings.setValue("x", ss->rectPos.x);
     ss->settings.setValue("y", ss->rectPos.y);
     ss->settings.setValue("w", ss->width_height.x);
     ss->settings.setValue("h", ss->width_height.y);
     ss->settings.popTag();
-    cout << "------------------------------------------------------------------------------" << endl;
-    cout << "--------------------------- settings saved -----------------------------------" << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
-
 }

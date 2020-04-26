@@ -26,7 +26,6 @@ public:
         corners=false;
         chequer=false;
         find=true;
-        rot = 0;
     }
     int num_colours=5;
     vector<cv::Point2f> centers;
@@ -44,11 +43,14 @@ public:
     void set_width_height(int w, int h){
         width_height.set(w, h);
     };
+
+    // Active area coords and size
     ofVec2f rectPos;
     ofVec2f width_height;
-    ofxXmlSettings settings;
     bool corners, chequer, find;
-    int rot;
+
+    // Settings
+    ofxXmlSettings settings;
     ofVec2f camPix;
 };
 
