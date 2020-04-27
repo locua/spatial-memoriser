@@ -46,6 +46,9 @@ void ofApp::setup() {
     /* - Initialise tracking objects and parameters
        - Grab settings from disk */
     for(int i = 0; i < num_colours; i++){
+        ofParameterGroup colour_params;
+        string group_name = "Colour " + to_string(i) + " params:";
+        colour_params.setName(group_name);
         ofParameter<float> t;
         ofParameter<bool> b;
         ofParameter<bool> cc;
@@ -72,9 +75,9 @@ void ofApp::setup() {
         ss->settings.popTag();
         targetColours.push_back(ofColor(r, g, b_));
         bool trackHue = ss->settings.getValue("trackHue", 0);
-        gui.add(thresholds[i].set("Threshold " + to_string(i), 255,0,255));
-        gui.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), trackHue));
-        gui.add(changeColours[i].set("Change colour "+to_string(i), false));
+        colour_params.add(thresholds[i].set("Threshold " + to_string(i), 255,0,255));
+        colour_params.add(trackHues[i].set("Track Hue/Sat colour "+to_string(i), trackHue));
+        colour_params.add(changeColours[i].set("Change colour "+to_string(i), false));
 
         // update from settings
         minareas[i] = ss->settings.getValue("minArea", 0);
@@ -84,10 +87,10 @@ void ofApp::setup() {
         thresholds[i]=ss->settings.getValue("thresh", 0);
 
         // Add gui parameters
-        gui.add(minareas[i].set("minArea: " + to_string(i), minareas[i], 0, 400));
-        gui.add(maxareas[i].set("maxArea: " + to_string(i), maxareas[i], 0, 400));
-        gui.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), minAreaRadi[i], 0, 50));
-        gui.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), maxAreaRadi[i], 0, 100));
+        colour_params.add(minareas[i].set("minArea: " + to_string(i), minareas[i], 0, 400));
+        colour_params.add(maxareas[i].set("maxArea: " + to_string(i), maxareas[i], 0, 400));
+        colour_params.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), minAreaRadi[i], 0, 50));
+        colour_params.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), maxAreaRadi[i], 0, 100));
 
         // update contour finders with variables
         ss->contourFinders[i].setMinArea(minareas[i]);
@@ -95,6 +98,9 @@ void ofApp::setup() {
         ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
         ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
         ss->settings.popTag();
+
+        // add colour group to gui
+        gui.add(colour_params);
     }
     ss->settings.popTag(); // pop tag
 
@@ -221,7 +227,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
     // Save settings to disk
     if(key=='s') {
       saveSettings();
