@@ -42,7 +42,7 @@ public:
     vector<ofParameter<bool>> changeColours;
     vector<ofxCv::ContourFinder> contourFinders;
 
-    // Gui
+    // gui
     ofxPanel gui;
 
     // projector class for second window display

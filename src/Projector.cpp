@@ -20,34 +20,51 @@ void Projector::update(){
 //--------------------------------------------------------------
 void Projector::draw(){
     ofBackground(0);
-    // for(int i =0; i < ss->num_colours; i++){
-    //     ss->contourFinders[i].draw();
-    // }
+    // Keep track of each blob for each color
+    // vector<vector<cv::Point2f>> blobs;
+    vector<cv::Point3f> blobs;
     // Loop over each colour
     for (int i = 0; i < ss->num_colours; i++) {
       // ss->contourFinders[i].draw();
       // Get tracking data and loop
       vector<cv::Rect> boundingRects = ss->contourFinders[i].getBoundingRects();
+      // vector<cv::Point2f> colour_blobs;
       for (unsigned int j = 0; j < boundingRects.size(); j++) {
         cv::Point2f p_;
+        cv::Point3f p__;
         // Get centre of blob
         p_ = ss->contourFinders[i].getCenter(j);
         ofSetColor(255, 200, 255);
         ofNoFill();
         // map cropped camera to window
-        p_.x = ofMap(p_.x, 0, ss->width_height.x, 0, 1920);
-        p_.y = ofMap(p_.y, 0, ss->width_height.y, 0, 1080);
+        p__.x = ofMap(p_.x, 0, ss->width_height.x, 0, 1920);
+        p__.y = ofMap(p_.y, 0, ss->width_height.y, 0, 1080);
+        p__.z=i;
+        blobs.push_back(p__);
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
         ofSetLineWidth(3);
-        // Circle object
+        // circle object
         ofDrawCircle(p_.x, p_.y, 100);
       }
+      // blobs.push_back(colour_blobs);
     }
+
+    // Access colour blobs
+    // printf("\033[2J");
+    // printf("\033[%d;%dH", 0, 0);
+    cout << "\r";
+    for(int i = 0; i < blobs.size(); i++){
+        cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
+        cout << ", color " << blobs[i].z << ", i " << i << "\n";
+        // cout << "\n";
+    }
+    cout <<""<<flush;
+
     // Draw chequerboard if on
     ofFill();
     if(ss->chequer){
-      inc = 0;
+    auto inc = 0;
       for (auto i = 0; i < mw; i += 30) {
         for (auto j = 0; j < mh; j += 30) {
           if (inc % 2 == 0) {

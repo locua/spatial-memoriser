@@ -11,25 +11,13 @@ public:
 
     // Initialise
     State(){
-        ofVec3f v1;
-        ofVec3f v2;
-        ofVec3f v3;
-        ofVec3f v4;
-        v1.set(100,100,0);
-        v2.set(1920-100,100,0);
-        v3.set(1920-100,1080-100,0);
-        v4.set(100,1080-100,0);
-        proPoints.push_back(v1);
-        proPoints.push_back(v2);
-        proPoints.push_back(v3);
-        proPoints.push_back(v4);
         rectPos.set(20, 20);
         width_height.set(1900, 1060);
         corners=false;
         chequer=false;
         find=true;
     }
-    // CV vars
+    // cv vars
     int num_colours=5;
     vector<cv::Point2f> centers;
     vector<ofxCv::ContourFinder> contourFinders;

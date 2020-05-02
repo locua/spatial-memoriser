@@ -18,7 +18,7 @@ void ofApp::setup() {
     // cam.listDevices();
 
     // camera and window setup
-    int camId = 2; // 1 = internal, 2 external
+    int camId = 0; // 1 = primary, 2 secondary
     int wwidth = 1920;
     int wheight = 1080;
     zoom=false;
@@ -32,7 +32,8 @@ void ofApp::setup() {
         cam.setup(1920, 1080);
         ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 1800, ss->width_height.y = 900;
     } else if(camId==0){
-        cam.setup(640, 480);
+        // cam.setup(640, 480);
+        cam.setup(1920, 1080);
         ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 300, ss->width_height.y = 200;
     }
 
@@ -46,6 +47,7 @@ void ofApp::setup() {
     /* - Initialise tracking objects and parameters
        - Grab settings from disk */
     for(int i = 0; i < num_colours; i++){
+        // create gui subgroup for each colour
         ofParameterGroup colour_params;
         string group_name = "Colour " + to_string(i) + " params:";
         colour_params.setName(group_name);
@@ -87,8 +89,8 @@ void ofApp::setup() {
         thresholds[i]=ss->settings.getValue("thresh", 0);
 
         // Add gui parameters
-        colour_params.add(minareas[i].set("minArea: " + to_string(i), minareas[i], 0, 400));
-        colour_params.add(maxareas[i].set("maxArea: " + to_string(i), maxareas[i], 0, 400));
+        // colour_params.add(minareas[i].set("minArea: " + to_string(i), minareas[i], 0, 400));
+        // colour_params.add(maxareas[i].set("maxArea: " + to_string(i), maxareas[i], 0, 400));
         colour_params.add(minAreaRadi[i].set("minAreaRadius: " + to_string(i), minAreaRadi[i], 0, 50));
         colour_params.add(maxAreaRadi[i].set("maxAreaRadius: " + to_string(i), maxAreaRadi[i], 0, 100));
 
@@ -226,55 +228,57 @@ void ofApp::mousePressed(int x, int y, int button) {
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-    
-    // Save settings to disk
-    if(key=='s') {
-      saveSettings();
-      ss->settings.saveFile("settings.xml");
-      cout << "------------------------------------------------------" << endl;
-      cout << "--------------- settings saved -----------------------" << endl;
-      cout << "------------------------------------------------------" << endl;
-    }
+void ofApp::keyPressed(int key) {
 
-    // Toggle corners bool
-    if(key=='c'){
-        if(ss->corners) {
-            ss->corners=false;
-        } else {
-            ss->corners=true;
-        }
-    }
+  // Save settings to disk
+  if (key == 's') {
+    saveSettings();
+    ss->settings.saveFile("settings.xml");
+    cout << "------------------------------------------------------" << endl;
+    cout << "--------------- settings saved -----------------------" << endl;
+    cout << "------------------------------------------------------" << endl;
+  }
 
-    // Toggle chequerboard
-    if (key == 'C') {
-      if (ss->chequer) {
-        ss->chequer = false;
-      } else {
-        ss->chequer = true;
-      }
+  // Toggle corners bool
+  if (key == 'c') {
+    if (ss->corners) {
+      ss->corners = false;
+    } else {
+      ss->corners = true;
     }
+  }
 
-    // 'r' key resets camera settings
-    if(key=='r'){
-        string str = "echo 'HELLO WORLD'";
-        string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
-        string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
-        string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
-        string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
-        // Convert string to const char * as system requires
-        // parameter of type const char *
-        const char *command = cm1.c_str();
-        system(command);
-        command = cm2.c_str();
-        system(command);
+  // Toggle chequerboard
+  if (key == 'C') {
+    if (ss->chequer) {
+      ss->chequer = false;
+    } else {
+      ss->chequer = true;
     }
+  }
 
-    // z key toggles zoom mode
-    if(key=='z'){
-        if(zoom) zoom=false;
-        else zoom=true;
-    }
+  // 'r' key resets camera settings
+  if (key == 'r') {
+    string str = "echo 'HELLO WORLD'";
+    string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
+    string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+    string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
+    string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
+    // Convert string to const char * as system requires
+    // parameter of type const char *
+    const char *command = cm1.c_str();
+    system(command);
+    command = cm2.c_str();
+    system(command);
+  }
+
+  // z key toggles zoom mode
+  if (key == 'z') {
+    if (zoom)
+      zoom = false;
+    else
+      zoom = true;
+  }
 }
 
 //--------------------------------------------------------------
