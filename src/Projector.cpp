@@ -45,19 +45,19 @@ void Projector::draw(){
         // p_.y+=ss->rectPos.y;
         ofSetLineWidth(3);
         // circle object
-        ofDrawCircle(p_.x, p_.y, 100);
+        ofDrawCircle(p__.x, p__.y, 100);
       }
       // blobs.push_back(colour_blobs);
     }
 
-    // Access colour blobs
-    // printf("\033[2J");
-    // printf("\033[%d;%dH", 0, 0);
-    cout << "\r";
+    // cout << "\r";
     for(int i = 0; i < blobs.size(); i++){
         cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
         cout << ", color " << blobs[i].z << ", i " << i << "\n";
         // cout << "\n";
+    }
+    for(int i = 0; i < blobs.size(); i++){
+        cout << "\r" << flush;
     }
     cout <<""<<flush;
 
@@ -108,18 +108,8 @@ void Projector::keyPressed(int key){
     }
 }
 
-void Projector::mem(int x, int y){
-
-}
-
-void Projector::keyReleased(int key){
-}
-
-void Projector::mouseDragged(int x, int y, int button){
-}
-
-void Projector::mouseReleased(int x, int y, int button){
-}
-
-void Projector::mousePressed(int x, int y, int button){
-}
+void Projector::mem(int x, int y){}
+void Projector::keyReleased(int key){}
+void Projector::mouseDragged(int x, int y, int button){}
+void Projector::mouseReleased(int x, int y, int button){}
+void Projector::mousePressed(int x, int y, int button){}
