@@ -2,7 +2,6 @@
 #include "ofApp.h"
 #include <bits/stdc++.h>
 
-//--------------------------------------------------------------
 void Projector::setup() {
     // initialise variables
     corners = false;
@@ -13,11 +12,9 @@ void Projector::setup() {
     mh = ofGetHeight();
 }
 
-//-------------------------------------------------------------
 void Projector::update(){
 }
 
-//--------------------------------------------------------------
 void Projector::draw(){
     ofBackground(0);
     // Keep track of each blob for each color
@@ -45,7 +42,7 @@ void Projector::draw(){
         // p_.y+=ss->rectPos.y;
         ofSetLineWidth(3);
         // circle object
-        ofDrawCircle(p__.x, p__.y, 100);
+        ofDrawCircle(p__.x, p__.y, 40);
       }
       // blobs.push_back(colour_blobs);
     }
@@ -89,7 +86,6 @@ void Projector::draw(){
     }
 }
 
-//--------------------------------------------------------------
 void Projector::keyPressed(int key){
     // Toggle fullscreen with f key
     if (key == 'f') {
