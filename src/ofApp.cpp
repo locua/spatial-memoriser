@@ -259,17 +259,23 @@ void ofApp::keyPressed(int key) {
 
   // 'r' key resets camera settings
   if (key == 'r') {
-    string str = "echo 'HELLO WORLD'";
-    string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
-    string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
-    string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
-    string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
-    // Convert string to const char * as system requires
-    // parameter of type const char *
-    const char *command = cm1.c_str();
-    system(command);
-    command = cm2.c_str();
-    system(command);
+      vector<string> commands;
+      string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
+      commands.push_back(cm1);
+      string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+      commands.push_back(cm2);
+      string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
+      commands.push_back(cm3);
+      string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
+      commands.push_back(cm4);
+      string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=656";
+      commands.push_back(cm5);
+      // Convert string to const char * as system requires
+      // parameter of type const char *
+      for(auto& _command : commands){
+          const char *command = _command.c_str();
+          system(command);
+      }
   }
 
   // z key toggles zoom mode
@@ -278,6 +284,17 @@ void ofApp::keyPressed(int key) {
       zoom = false;
     else
       zoom = true;
+  }
+
+  // toggle tracking with t
+  if (key=='t'){
+      if (ss->find){
+          ss->find=false;
+          cout << "tracking off" << endl;
+      } else {
+          ss->find=true;
+          cout << "tracking on" << endl;
+      }
   }
 }
 
