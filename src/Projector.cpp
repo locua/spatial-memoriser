@@ -16,6 +16,14 @@ void Projector::update(){
 }
 
 void Projector::draw(){
+
+    // bool flip=true;
+    // if (flip){
+    //     ofPushMatrix();
+    //     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+    //     ofRotateDeg(180, 0,0,1);
+    // }
+
     ofBackground(0);
     // Keep track of each blob for each color
     // vector<vector<cv::Point2f>> blobs;
@@ -86,6 +94,8 @@ void Projector::draw(){
       ofDrawTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight() - 200, ofGetWidth() - 200, ofGetHeight());
       ofDrawTriangle(0, ofGetHeight(), 200, ofGetHeight(), 0, ofGetHeight() - 200);
     }
+
+    // if(flip) ofPopMatrix();
 }
 
 void Projector::keyPressed(int key){
