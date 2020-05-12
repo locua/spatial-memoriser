@@ -48,7 +48,7 @@ void Projector::draw(){
     }
 
     // cout << "\r";
-    if(ss->find){
+    if(ss->find{
         for(int i = 0; i < blobs.size(); i++){
             cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
             cout << ", color " << blobs[i].z << ", i " << i << "\n";
