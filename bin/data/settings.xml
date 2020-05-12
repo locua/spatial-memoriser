@@ -3,14 +3,14 @@
         <minArea>0</minArea>
         <maxArea>400</maxArea>
         <minAreaRadius>8</minAreaRadius>
-        <maxAreaRadius>33</maxAreaRadius>
+        <maxAreaRadius>100</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>118</r>
-            <g>184</g>
-            <b>196</b>
+            <r>223</r>
+            <g>245</g>
+            <b>237</b>
         </threshold>
-        <thresh>19.515306473</thresh>
+        <thresh>19.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -49,7 +49,7 @@
             <g>96</g>
             <b>204</b>
         </threshold>
-        <thresh>62.000000000</thresh>
+        <thresh>255.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>

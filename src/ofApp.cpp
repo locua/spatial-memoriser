@@ -123,6 +123,9 @@ void ofApp::setup() {
 
     // Save Settings
     // ss->settings.saveFile("settings.xml");
+
+    // run camera setup commands at the beginning
+    run_v4l2_commands();
 }
 
 //--------------------------------------------------------------
@@ -259,23 +262,7 @@ void ofApp::keyPressed(int key) {
 
   // 'r' key resets camera settings
   if (key == 'r') {
-      vector<string> commands;
-      string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
-      commands.push_back(cm1);
-      string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
-      commands.push_back(cm2);
-      string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
-      commands.push_back(cm3);
-      string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
-      commands.push_back(cm4);
-      string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=656";
-      commands.push_back(cm5);
-      // Convert string to const char * as system requires
-      // parameter of type const char *
-      for(auto& _command : commands){
-          const char *command = _command.c_str();
-          system(command);
-      }
+      run_v4l2_commands();
   }
 
   // z key toggles zoom mode
@@ -295,6 +282,26 @@ void ofApp::keyPressed(int key) {
           ss->find=true;
           cout << "tracking on" << endl;
       }
+  }
+}
+
+void ofApp::run_v4l2_commands(){
+  vector<string> commands;
+  string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
+  commands.push_back(cm1);
+  string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+  commands.push_back(cm2);
+  string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
+  commands.push_back(cm3);
+  string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
+  commands.push_back(cm4);
+  string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=656";
+  commands.push_back(cm5);
+  // Convert string to const char * as system requires
+  // parameter of type const char *
+  for (auto &_command : commands) {
+    const char *command = _command.c_str();
+    system(command);
   }
 }
 

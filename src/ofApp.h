@@ -22,7 +22,7 @@ public:
     void mouseReleased(int x, int y, int button);
     void mouseEntered(int x, int y);
     void saveSettings();
-
+    void run_v4l2_commands();
     // CV variables
     ofVideoGrabber cam;
     ofColor targetColor1;
@@ -62,6 +62,5 @@ public:
     // Zoom vars
     ofEasyCam easy_cam;
     bool zoom;
-
 };
 

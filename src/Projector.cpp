@@ -48,15 +48,17 @@ void Projector::draw(){
     }
 
     // cout << "\r";
-    for(int i = 0; i < blobs.size(); i++){
-        cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
-        cout << ", color " << blobs[i].z << ", i " << i << "\n";
-        // cout << "\n";
+    if(ss->find){
+        for(int i = 0; i < blobs.size(); i++){
+            cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
+            cout << ", color " << blobs[i].z << ", i " << i << "\n";
+            // cout << "\n";
+        }
+        for(int i = 0; i < blobs.size(); i++){
+            cout << "\r" << flush;
+        }
+        cout <<""<<flush;
     }
-    for(int i = 0; i < blobs.size(); i++){
-        cout << "\r" << flush;
-    }
-    cout <<""<<flush;
 
     // Draw chequerboard if on
     ofFill();
