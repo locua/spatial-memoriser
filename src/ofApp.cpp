@@ -286,23 +286,20 @@ void ofApp::keyPressed(int key) {
 }
 
 void ofApp::run_v4l2_commands(){
-  vector<string> commands;
-  string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
-  commands.push_back(cm1);
-  string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
-  commands.push_back(cm2);
-  string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
-  commands.push_back(cm3);
-  string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
-  commands.push_back(cm4);
-  string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=656";
-  commands.push_back(cm5);
-  // Convert string to const char * as system requires
-  // parameter of type const char *
-  for (auto &_command : commands) {
-    const char *command = _command.c_str();
-    system(command);
-  }
+    // Commands as strings
+    string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
+    string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
+    string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
+    string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
+    string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=656";
+    vector<string> commands = {cm1, cm2, cm3, cm4, cm5};
+    // loop over commands
+    for (auto &_command : commands) {
+      // Convert string to const char * as system requires
+      // parameter of type const char *
+      const char *command = _command.c_str();
+      system(command);
+    }
 }
 
 //--------------------------------------------------------------
