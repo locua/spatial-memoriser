@@ -27,7 +27,7 @@ void ofApp::setup() {
     // Select camera
     cam.setDeviceID(camId);
 
-    // Alternative camera settings for different cams
+    // alternative camera settings for different cams
     if(camId==2){
         cam.setup(1920, 1080);
         ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 1800, ss->width_height.y = 900;
