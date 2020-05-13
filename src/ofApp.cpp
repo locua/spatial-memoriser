@@ -30,7 +30,7 @@ void ofApp::setup() {
     // alternative camera settings for different cams
     if(camId==2){
         cam.setup(1920, 1080);
-        ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 1800, ss->width_height.y = 900;
+        ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 1000, ss->width_height.y = 900;
     } else if(camId==0){
         // cam.setup(640, 480);
         cam.setup(1920, 1080);
@@ -165,7 +165,6 @@ void ofApp::draw() {
         ofTranslate(-ofGetWidth() / 2, -ofGetHeight() / 2);
     }
 
-
     // Draw camera
     ofSetColor(255);
     cam.draw(0, 0);
@@ -289,17 +288,20 @@ void ofApp::run_v4l2_commands(){
     // Commands as strings
     string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
     string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
-    string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=0";
+    string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=1";
     string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
-    string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=656";
-    vector<string> commands = {cm1, cm2, cm3, cm4, cm5};
+    string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=156";
+    string cm6 = "v4l2-ctl -d /dev/video2 -c exposure_auto_priority=0";
+    vector<string> commands = {cm1, cm2, cm3, cm4, cm5, cm6};
     // loop over commands
     for (auto &_command : commands) {
       // Convert string to const char * as system requires
       // parameter of type const char *
       const char *command = _command.c_str();
       system(command);
+      // cout << command << endl;
     }
+    cout << "Camera settings updated" << endl;
 }
 
 //--------------------------------------------------------------
