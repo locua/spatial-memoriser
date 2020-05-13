@@ -177,8 +177,8 @@ void ofApp::draw() {
     ofPushMatrix();
     // Draw contours found
     ofTranslate(ss->rectPos.x, ss->rectPos.y);
-    for(int i=0; i < num_colours; i ++)
-        ss->contourFinders[i].draw();
+    for(auto & cf : ss->contourFinders)
+        cf.draw();
     ofPopMatrix();
 
     // draw corner circles
