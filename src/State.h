@@ -15,7 +15,7 @@ public:
         width_height.set(1900, 1060);
         corners=false;
         chequer=false;
-        find=true;
+        find=false;
         exposure=156;
     }
     // cv vars
