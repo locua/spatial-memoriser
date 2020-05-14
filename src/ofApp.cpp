@@ -112,6 +112,11 @@ void ofApp::setup() {
     ss->set_width_height(ss->settings.getValue("w", 0), ss->settings.getValue("h", 0));
     ss->settings.popTag();
 
+    //cam settings
+    ss->settings.pushTag("camSettings");
+    ss->exposure=ss->settings.getValue("exposure_absolute", 0);
+    ss->settings.popTag();
+
     // Bools for ???
     for(int i = 0; i < 4; i++){
         vn.push_back(false);
@@ -307,7 +312,7 @@ void ofApp::run_v4l2_commands(){
     string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
     string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=1";
     string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
-    string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=156";
+    string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=278";
     string cm6 = "v4l2-ctl -d /dev/video2 -c exposure_auto_priority=0";
     vector<string> commands = {cm1, cm2, cm3, cm4, cm5, cm6};
     // loop over commands
