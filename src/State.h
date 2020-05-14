@@ -16,6 +16,7 @@ public:
         corners=false;
         chequer=false;
         find=true;
+        exposure=156;
     }
     // cv vars
     int num_colours=5;
@@ -45,6 +46,9 @@ public:
     // Settings
     ofxXmlSettings settings;
     ofVec2f camPix;
+
+    // cam stuff
+    int exposure;
 };
 
 #endif

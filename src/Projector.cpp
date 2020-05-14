@@ -62,10 +62,6 @@ void Projector::draw(){
             cout << ", color " << blobs[i].z << ", i " << i << "\n";
             // cout << "\n";
         }
-        for(int i = 0; i < blobs.size(); i++){
-            cout << "\r" << flush;
-        }
-        cout <<""<<flush;
     }
 
     // Draw chequerboard if on

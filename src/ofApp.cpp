@@ -1,4 +1,4 @@
-#include "ofApp.h"
+ #include "ofApp.h"
 
 using namespace ofxCv;
 using namespace cv;
@@ -282,6 +282,23 @@ void ofApp::keyPressed(int key) {
           cout << "tracking on" << endl;
       }
   }
+
+  // increment or decrement exposure
+  if(key=='+') change_exposure(1);
+  if(key=='-') change_exposure(-1);
+
+  // Toggle fullscreen with f key
+  if (key == 'f') {
+    if (bFullscreen == 1) {
+      ofSetFullscreen(false);
+      bFullscreen = 0;
+    } else if (bFullscreen == 0) {
+      ofSetFullscreen(true);
+      bFullscreen = 1;
+    }
+  }
+
+
 }
 
 void ofApp::run_v4l2_commands(){
@@ -302,6 +319,14 @@ void ofApp::run_v4l2_commands(){
       // cout << command << endl;
     }
     cout << "Camera settings updated" << endl;
+}
+
+void ofApp::change_exposure(int _val){
+    ss->exposure+=_val;
+    int new_val=ss->exposure;
+    string cm1 = "v4l2-ctl -d2 -c exposure_absolute="+to_string(new_val);
+    system(cm1.c_str());
+    cout << "EXPOSURE = " + to_string(ss->exposure) + "\n";
 }
 
 //--------------------------------------------------------------

@@ -23,6 +23,7 @@ public:
     void mouseEntered(int x, int y);
     void saveSettings();
     void run_v4l2_commands();
+    void change_exposure(int);
     // CV variables
     ofVideoGrabber cam;
     ofColor targetColor1;
@@ -44,6 +45,7 @@ public:
 
     // gui
     ofxPanel gui;
+    bool bFullscreen;
 
     // projector class for second window display
     shared_ptr<Projector> projector;
@@ -62,5 +64,6 @@ public:
     // Zoom vars
     ofEasyCam easy_cam;
     bool zoom;
+
 };
 
