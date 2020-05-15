@@ -1,11 +1,18 @@
 
 * Requirements
-- Linux 64bit. Built and tested on Ubuntu 18.04. Should work on windows and mac with minor adjustments to location of the loaded camera.
+** Software
+- Linux 64bit recommended. Built and tested on Ubuntu 18.04. Should work on windows and macOS but not all the functionality will work such as adjusting camera settings from within the application.
 - [[https://openframeworks.cc/download/][openFrameworks]]. Was developed on version *v20200211_linux64gcc6_nightly*
 - [[https://www.mankier.com/1/v4l2-ctl][v4l2-ctl]]. The v4l2-ctl tool is used to control video4linux devices. If using on macOS or Windows use a supported application to adjust camera settings.
 - [[https://openframeworks.cc/documentation/ofxXmlSettings/ofxXmlSettings/][ofxXmlSettings]]. An openFrameworks xml interface
 - [[https://openframeworks.cc/documentation/ofxGui/][ofxGui]]. Gui Library for oF
 - [[https://github.com/kylemcdonald/ofxCv][ofxCv]]. Alternative approach to interfacing with OpenCv from openFrameworks.
+- opencv 4. May work with earlier versions as well.
+** Hardware and physical setup
+- Projector. With at least 1500 lumens
+- 1080p webcam and extened usb.
+
+[[file:imgs/project-schema-final.png]]
 
 * Spatial memoriser
 - [[https://gitlab.doc.gold.ac.uk/ljame002/report]]
