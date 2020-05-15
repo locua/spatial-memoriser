@@ -2,15 +2,15 @@
     <contourFinder>
         <minArea>0</minArea>
         <maxArea>400</maxArea>
-        <minAreaRadius>8</minAreaRadius>
-        <maxAreaRadius>100</maxAreaRadius>
+        <minAreaRadius>3</minAreaRadius>
+        <maxAreaRadius>17</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>196</r>
-            <g>219</g>
-            <b>210</b>
+            <r>255</r>
+            <g>232</g>
+            <b>168</b>
         </threshold>
-        <thresh>19.000000000</thresh>
+        <thresh>39.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -19,59 +19,58 @@
         <maxAreaRadius>20</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>219</r>
-            <g>49</g>
-            <b>139</b>
+            <r>0</r>
+            <g>180</g>
+            <b>255</b>
         </threshold>
         <thresh>61.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
         <maxArea>400</maxArea>
-        <minAreaRadius>40</minAreaRadius>
-        <maxAreaRadius>100</maxAreaRadius>
+        <minAreaRadius>3</minAreaRadius>
+        <maxAreaRadius>21</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>255</r>
-            <g>137</g>
-            <b>163</b>
+            <r>51</r>
+            <g>153</g>
+            <b>151</b>
         </threshold>
-        <thresh>255.000000000</thresh>
+        <thresh>29.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
         <maxArea>400</maxArea>
-        <minAreaRadius>16</minAreaRadius>
-        <maxAreaRadius>48</maxAreaRadius>
+        <minAreaRadius>2</minAreaRadius>
+        <maxAreaRadius>17</maxAreaRadius>
+        <trackHue>0</trackHue>
+        <threshold>
+            <r>237</r>
+            <g>2</g>
+            <b>62</b>
+        </threshold>
+        <thresh>29.000000000</thresh>
+    </contourFinder>
+    <contourFinder>
+        <minArea>0</minArea>
+        <maxArea>400</maxArea>
+        <minAreaRadius>3</minAreaRadius>
+        <maxAreaRadius>17</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
             <r>16</r>
-            <g>96</g>
-            <b>204</b>
+            <g>22</g>
+            <b>48</b>
         </threshold>
-        <thresh>255.000000000</thresh>
-    </contourFinder>
-    <contourFinder>
-        <minArea>0</minArea>
-        <maxArea>400</maxArea>
-        <minAreaRadius>40</minAreaRadius>
-        <maxAreaRadius>100</maxAreaRadius>
-        <trackHue>0</trackHue>
-        <threshold>
-            <r>255</r>
-            <g>137</g>
-            <b>163</b>
-        </threshold>
-        <thresh>255.000000000</thresh>
+        <thresh>19.515306473</thresh>
     </contourFinder>
 </contourFinders>
 <projectPositions>
-    <x>538.000000000</x>
-    <y>124.000000000</y>
-    <w>1016.000000000</w>
-    <h>588.000000000</h>
+    <x>555.000000000</x>
+    <y>100.000000000</y>
+    <w>1010.000000000</w>
+    <h>602.000000000</h>
 </projectPositions>
 <camSettings>
-  <exposure_absolute>278</exposure_absolute>
+    <exposure_absolute>278</exposure_absolute>
 </camSettings>
-

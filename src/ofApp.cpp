@@ -308,13 +308,14 @@ void ofApp::keyPressed(int key) {
 
 void ofApp::run_v4l2_commands(){
     // Commands as strings
-    string cm1 = "v4l2-ctl -d /dev/video2 -c focus_auto=0";
-    string cm2 = "v4l2-ctl -d /dev/video2 -c focus_absolute=0";
-    string cm3 = "v4l2-ctl -d /dev/video2 -c exposure_auto=1";
-    string cm4 = "v4l2-ctl -d /dev/video2 -c white_balance_temperature_auto=0";
-    string cm5 = "v4l2-ctl -d /dev/video2 -c exposure_absolute=278";
-    string cm6 = "v4l2-ctl -d /dev/video2 -c exposure_auto_priority=0";
-    vector<string> commands = {cm1, cm2, cm3, cm4, cm5, cm6};
+    string cm1 = "v4l2-ctl -d2 -c focus_auto=0";
+    string cm2 = "v4l2-ctl -d2 -c focus_absolute=0";
+    string cm3 = "v4l2-ctl -d2 -c exposure_auto=1";
+    string cm4 = "v4l2-ctl -d2 -c white_balance_temperature_auto=0";
+    string cm5 = "v4l2-ctl -d2 -c exposure_absolute=278";
+    string cm6 = "v4l2-ctl -d2 -c exposure_auto_priority=0";
+    string cm7 = "v4l2-ctl -d2 -c white_balance_temperature=3755";
+    vector<string> commands = {cm1, cm2, cm3, cm4, cm5, cm6, cm7};
     // loop over commands
     for (auto &_command : commands) {
       // Convert string to const char * as system requires

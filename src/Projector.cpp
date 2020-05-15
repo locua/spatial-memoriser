@@ -71,7 +71,7 @@ void Projector::draw(){
       for (auto i = 0; i < mw; i += 30) {
         for (auto j = 0; j < mh; j += 30) {
           if (inc % 2 == 0) {
-            ofSetColor(255, 200, 200);
+            ofSetColor(255);
           } else {
             ofSetColor(0);
           }
@@ -84,7 +84,7 @@ void Projector::draw(){
     // Draw corners if on
     ofFill();
     if (ss->corners) {
-      ofSetColor(200, 255, 200);
+      ofSetColor(255);
       ofDrawTriangle(0, 0, 200, 0, 0, 200);
       ofDrawTriangle(ofGetWidth(), 0, ofGetWidth() - 200, 0, ofGetWidth(), 200);
       ofDrawTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight() - 200, ofGetWidth() - 200, ofGetHeight());
