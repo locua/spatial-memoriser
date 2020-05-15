@@ -14,7 +14,7 @@
 
 [[file:imgs/project-schema-final.png]]
 
-* Spatial memoriser
+* Dev note
 - [[https://gitlab.doc.gold.ac.uk/ljame002/report]]
 - Display = Landscape flipped...
 
