@@ -1,9 +1,18 @@
+
+* Requirements
+- Linux 64bit. Built and tested on Ubuntu 18.04. Should work on windows and mac with minor adjustments to location of the loaded camera.
+- [[https://openframeworks.cc/download/][openFrameworks]]. Was developed on version *v20200211_linux64gcc6_nightly*
+- [[https://www.mankier.com/1/v4l2-ctl][v4l2-ctl]]. The v4l2-ctl tool is used to control video4linux devices. If using on macOS or Windows use a supported application to adjust camera settings.
+- [[https://openframeworks.cc/documentation/ofxXmlSettings/ofxXmlSettings/][ofxXmlSettings]]. An openFrameworks xml interface
+- [[https://openframeworks.cc/documentation/ofxGui/][ofxGui]]. Gui Library for oF
+- [[https://github.com/kylemcdonald/ofxCv][ofxCv]]. Alternative approach to interfacing with OpenCv from openFrameworks.
+
 * Spatial memoriser
 - [[https://gitlab.doc.gold.ac.uk/ljame002/report]]
 - Display = Landscape flipped...
 
 
 [[file:imgs/Screenshot2.png]]
-* Commit dbf7c3ff5a2464124f7d02b78b415e78aded25be :
+** Commit dbf7c3ff5a2464124f7d02b78b415e78aded25be :
 [[file:imgs/1st-touch.jpg]]
-* Use json instead of xml [[https://github.com/nlohmann/json]]
+** Use json instead of xml [[https://github.com/nlohmann/json]]
