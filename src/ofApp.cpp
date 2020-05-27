@@ -1,4 +1,4 @@
- #include "ofApp.h"
+#include "ofApp.h"
 
 using namespace ofxCv;
 using namespace cv;
@@ -18,7 +18,7 @@ void ofApp::setup() {
     // cam.listDevices();
 
     // camera and window setup
-    int camId = 0; // 1 = primary, 2 secondary
+    int camId = 2; // 1 = primary, 2 secondary
     int wwidth = 1920;
     int wheight = 1080;
     zoom=false;
@@ -28,15 +28,14 @@ void ofApp::setup() {
     cam.setDeviceID(camId);
 
     // alternative camera settings for different cams
-    if(camId==2){
+    if(camId==1){
         cam.setup(1920, 1080);
         ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 1000, ss->width_height.y = 900;
-    } else if(camId==0){
-        // cam.setup(640, 480);
+    } else if(camId==2){
         cam.setup(1920, 1080);
+        // cam.setup(640, 480);
         ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 300, ss->width_height.y = 200;
     }
-
     // Initialise gui and parameters
     gui.setup();
     gui.setPosition(50,50);

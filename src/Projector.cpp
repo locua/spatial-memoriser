@@ -81,6 +81,7 @@ void Projector::draw(){
         inc++;
       }
     }
+
     // Draw corners if on
     ofFill();
     if (ss->corners) {
