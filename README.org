@@ -13,13 +13,23 @@
 - 1080p webcam and extened usb.
 
 [[file:imgs/project-schema-final.png]]
+* Setup / install
 
-* Dev note
+For use the camera ID will most likely have to change. After initial compilation
+check the output for the ID of camera.
+
+#+begin_src cpp
+// camera and window setup
+int camId = 0; // Change this variable to the correct id
+#+end_src
+
+* Troubleshooting
+
+* Dev notes
 - [[https://gitlab.doc.gold.ac.uk/ljame002/report]]
 - Display = Landscape flipped...
 
-
-[[file:imgs/Screenshot2.png]]
+# [[file:imgs/Screenshot2.png]]
 ** Commit dbf7c3ff5a2464124f7d02b78b415e78aded25be :
-[[file:imgs/1st-touch.jpg]]
+# [[file:imgs/1st-touch.jpg]]
 ** Use json instead of xml [[https://github.com/nlohmann/json]]
