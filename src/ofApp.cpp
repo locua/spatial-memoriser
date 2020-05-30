@@ -15,7 +15,7 @@ void ofApp::setup() {
     cout << "--------------------------- Welcome ------------------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 
-    // cam.listDevices();
+    // cam.listDevices()// ;
 
     // camera and window setup
     int camId = 2; // 1 = primary, 2 secondary
@@ -34,7 +34,7 @@ void ofApp::setup() {
     } else if(camId==2){
         cam.setup(1920, 1080);
         // cam.setup(640, 480);
-        ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 300, ss->width_height.y = 200;
+        // ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 300, ss->width_height.y = 200;
     }
     // Initialise gui and parameters
     gui.setup();
