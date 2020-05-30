@@ -15,8 +15,8 @@ void ofApp::setup() {
     cout << "--------------------------- Welcome ------------------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 
+    // list video devices with ids
     vector<ofVideoDevice> devices = cam.listDevices();
-
     for(size_t i = 0; i < devices.size(); i++){
         if(devices[i].bAvailable){
             //log the device
