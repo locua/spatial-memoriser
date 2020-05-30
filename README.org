@@ -23,6 +23,9 @@ int camId = 0; // Change this variable to the correct id
 #+end_src
 
 * Controls / keyboard shortcuts
+All these shortcuts are run on the GUI window. Except =f= which can be run on
+either window to toggle fullscreen.
+
 - Toggle tracking with =t=
 - Toggle corners on projection window with =c= key
 - Toggle chequerboard on projection window with =C= key
