@@ -15,10 +15,21 @@ void ofApp::setup() {
     cout << "--------------------------- Welcome ------------------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 
-    // cam.listDevices()// ;
+    vector<ofVideoDevice> devices = cam.listDevices();
+
+    for(size_t i = 0; i < devices.size(); i++){
+        if(devices[i].bAvailable){
+            //log the device
+            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
+        }else{
+            //log the device and note it as unavailable
+            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName << " - unavailable ";
+        }
+    }
+
 
     // camera and window setup
-    int camId = 2; // 1 = primary, 2 secondary
+    int camId = 0; // 1 = primary, 2 secondary
     int wwidth = 1920;
     int wheight = 1080;
     zoom=false;
@@ -26,16 +37,13 @@ void ofApp::setup() {
 
     // Select camera
     cam.setDeviceID(camId);
+    cam.setup(1920, 1080);
 
     // alternative camera settings for different cams
-    if(camId==1){
-        cam.setup(1920, 1080);
-        ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 1000, ss->width_height.y = 900;
-    } else if(camId==2){
-        cam.setup(1920, 1080);
-        // cam.setup(640, 480);
-        // ss->rectPos.x = 20, ss->rectPos.y = 20, ss->width_height.x = 300, ss->width_height.y = 200;
-    }
+    // Alternative cam setup ( in built camera )
+    // cam.setup(640, 480);
+
+
     // Initialise gui and parameters
     gui.setup();
     gui.setPosition(50,50);
