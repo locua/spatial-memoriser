@@ -22,6 +22,19 @@ check the output for the ID of camera.
 int camId = 0; // Change this variable to the correct id
 #+end_src
 
+* Controls / keyboard shortcuts
+** Toggle tracking with `t`
+** Toggle corners on projection window with `c` key
+** Toggle chequerboard on projection window with `C` key
+Useful for keystone calibration
+** Reset camera settings to default with `r`
+** Toggle zoom mode with `z`
+Doesn't work in a useful way
+** Increment and decrement exposure with `+` and `-`
+Only works if v4l2-ctl is installed 
+** Toggle fullscreen with `f`
+** Save settings with `s`
+
 * Troubleshooting
 
 * Schema

@@ -155,13 +155,6 @@ void ofApp::update() {
     if(cam.isFrameNew()) {
         // Loop for number of colours and track target colours
         for(int i = 0; i < num_colours; i++){
-            // Set contour finders with params
-            // ss->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
-            // ss->contourFinders[i].setThreshold(thresholds[i]);
-            // ss->contourFinders[i].setMinArea(minareas[i]);
-            // ss->contourFinders[i].setMaxArea(maxareas[i]);
-            // ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
-            // ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
             // if finding: find // cv on / off
             if(ss->find) ss->contourFinders[i].findContours(camPix);
         }
@@ -170,6 +163,7 @@ void ofApp::update() {
     // cout << ofGetElapsedTimeMillis() << endl;
 
     // update parameters less: once a second
+    // TODO: update only when GUI changed
     if (ofGetElapsedTimeMillis() % 1000 == 0) {
       for (int i = 0; i < num_colours; i++) {
         // Set contour finders with params
