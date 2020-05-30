@@ -12,18 +12,21 @@
 - Projector. With at least 1500 lumens
 - 1080p webcam and extened usb.
 
-[[file:imgs/project-schema-final.png]]
 * Setup / install
 
 For use the camera ID will most likely have to change. After initial compilation
 check the output for the ID of camera.
 
-#+begin_src cpp
+#+begin_src c++
 // camera and window setup
 int camId = 0; // Change this variable to the correct id
 #+end_src
 
 * Troubleshooting
+
+* Schema
+
+[[file:imgs/project-schema-final.png]]
 
 * Dev notes
 - [[https://gitlab.doc.gold.ac.uk/ljame002/report]]
