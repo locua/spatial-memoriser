@@ -65,5 +65,8 @@ public:
     ofEasyCam easy_cam;
     bool zoom;
 
+    // font
+    ofTrueTypeFont font_1;
+
 };
 

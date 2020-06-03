@@ -49,6 +49,8 @@ void ofApp::setup() {
     gui.setPosition(50,50);
     ss->settings.loadFile("settings.xml");
     ss->settings.pushTag("contourFinders");
+    // font
+    font_1.load("arial.ttf", 12);
 
     // For each tracked colour:
     /* - Initialise tracking objects and parameters
@@ -240,6 +242,24 @@ void ofApp::draw() {
       ofDrawRectangle(0, 0, 64, 64);
     }
     ofPopMatrix();
+
+
+    // Draw instructions
+    ofSetColor(255);
+    font_1.drawString(R"(Keyboard Shortcuts:
+- Toggle tracking with =t=
+- Toggle corners on projection window with =c= key
+- Toggle chequerboard on projection window with =C= key
+  - Useful for keystone calibration
+- Reset camera settings to default with =r=
+- Toggle zoom mode with =z=
+  - Doesn't work in a useful way
+- Increment and decrement exposure with =+= and =-=
+  - Only works if v4l2-ctl is installed 
+- Toggle fullscreen with =f=
+- Save settings with =s=
+    )",
+                      200, 800);
 }
 
 //--------------------------------------------------------------
@@ -317,6 +337,27 @@ void ofApp::keyPressed(int key) {
       ofSetFullscreen(true);
       bFullscreen = 1;
     }
+  }
+
+  // Switch camera
+  if(key=='v'){
+    // list video devices with ids
+    vector<ofVideoDevice> devices = cam.listDevices();
+    for (size_t i = 0; i < devices.size(); i++) {
+      if (devices[i].bAvailable) {
+        // log the device
+        ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
+      } else {
+        // log the device and note it as unavailable
+        ofLogNotice() << devices[i].id << ": " << devices[i].deviceName
+                      << " - unavailable ";
+      }
+    }
+    string id_string = ofSystemTextBoxDialog("Enter camera id number");
+    int id_int = stoi(id_string);
+    cam.setDeviceID(id_int);
+    cam.setup(1920, 1080);
+    cam.update();
   }
 
 
