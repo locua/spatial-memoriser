@@ -50,7 +50,7 @@ void ofApp::setup() {
     ss->settings.loadFile("settings.xml");
     ss->settings.pushTag("contourFinders");
     // font
-    font_1.load("arial.ttf", 12);
+    font_1.load("SourceCodePro-MediumIt.ttf", 12);
 
     // For each tracked colour:
     /* - Initialise tracking objects and parameters
@@ -259,7 +259,7 @@ void ofApp::draw() {
 - Toggle fullscreen with =f=
 - Save settings with =s=
     )",
-                      200, 800);
+                      200, 750);
 }
 
 //--------------------------------------------------------------
