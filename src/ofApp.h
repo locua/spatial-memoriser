@@ -46,6 +46,7 @@ public:
     // gui
     ofxPanel gui;
     bool bFullscreen;
+    bool shortcuts;
 
     // projector class for second window display
     shared_ptr<Projector> projector;

@@ -51,6 +51,7 @@ void ofApp::setup() {
     ss->settings.pushTag("contourFinders");
     // font
     font_1.load("SourceCodePro-MediumIt.ttf", 11);
+    shortcuts=false;
 
     // For each tracked colour:
     /* - Initialise tracking objects and parameters
@@ -245,10 +246,11 @@ void ofApp::draw() {
 
 
     // Draw instructions
-    ofSetColor(50, 130);
-    ofDrawRectangle(45, 720, 600, 260);
-    ofSetColor(255);
-    font_1.drawString(R"(Keyboard Shortcuts:
+    if(shortcuts){
+        ofSetColor(50, 130);
+        ofDrawRectangle(45, 720, 600, 260);
+        ofSetColor(255);
+        font_1.drawString(R"(Keyboard Shortcuts:
 - Toggle tracking with =t=
 - Toggle corners on projection window with =c= key
 - Toggle chequerboard on projection window with =C= key
@@ -261,7 +263,10 @@ void ofApp::draw() {
 - Toggle fullscreen with =f=
 - Save settings with =s=
     )",
-                      70, 770);
+                          70, 760);
+    }
+    ofSetColor(255);
+    font_1.drawString("Toggle keyboard shortcuts with 'k'", 240, 40);
 }
 
 //--------------------------------------------------------------
@@ -360,6 +365,12 @@ void ofApp::keyPressed(int key) {
     cam.setDeviceID(id_int);
     cam.setup(1920, 1080);
     cam.update();
+  }
+
+  // Toggle shortcuts with k
+  if(key=='k'){
+      if(shortcuts) shortcuts = false;
+      else shortcuts=true;
   }
 
 

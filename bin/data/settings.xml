@@ -10,7 +10,7 @@
             <g>157</g>
             <b>103</b>
         </threshold>
-        <thresh>29.923469543</thresh>
+        <thresh>29.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -66,10 +66,10 @@
     </contourFinder>
 </contourFinders>
 <projectPositions>
-    <x>521.000000000</x>
-    <y>155.000000000</y>
-    <w>1010.000000000</w>
-    <h>602.000000000</h>
+    <x>571.000000000</x>
+    <y>152.000000000</y>
+    <w>997.000000000</w>
+    <h>540.000000000</h>
 </projectPositions>
 <camSettings>
     <exposure_absolute>278</exposure_absolute>
