@@ -50,7 +50,7 @@ void ofApp::setup() {
     ss->settings.loadFile("settings.xml");
     ss->settings.pushTag("contourFinders");
     // font
-    font_1.load("SourceCodePro-MediumIt.ttf", 12);
+    font_1.load("SourceCodePro-MediumIt.ttf", 11);
 
     // For each tracked colour:
     /* - Initialise tracking objects and parameters
@@ -245,6 +245,8 @@ void ofApp::draw() {
 
 
     // Draw instructions
+    ofSetColor(50, 130);
+    ofDrawRectangle(45, 720, 600, 260);
     ofSetColor(255);
     font_1.drawString(R"(Keyboard Shortcuts:
 - Toggle tracking with =t=
@@ -259,7 +261,7 @@ void ofApp::draw() {
 - Toggle fullscreen with =f=
 - Save settings with =s=
     )",
-                      200, 750);
+                      70, 770);
 }
 
 //--------------------------------------------------------------
