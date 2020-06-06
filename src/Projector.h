@@ -16,6 +16,7 @@ class Projector: public ofBaseApp {
     void mouseDragged(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void mem(int x, int y);
+    vector<vector<int>> findPairs(vector<cv::Point3f> &blobs);
     bool bFullscreen;
     float xp1, yp1;
     int gwidth, gheight;

@@ -66,31 +66,7 @@ void Projector::draw(){
     // }
 
     // Find blob pairs
-    vector<vector<int>> pairs;
-    for (int i = 0; i < blobs.size();i++){
-        for (int j = 0; j < blobs.size(); j++){
-            if(i!=j){
-                float dist = ofDist(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
-                if(dist<400){
-                  // ofDrawLine(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
-                  // Loop over pairs
-                  bool _found = false;
-                  for (int k = 0; k < pairs.size(); k++) {
-                    vector<int>::iterator iti, itj;
-                    iti = find(pairs[k].begin(), pairs[k].end(), i);
-                    itj = find(pairs[k].begin(), pairs[k].end(), j);
-                    // Check pair has already been found
-                    if (iti != pairs[k].end() && itj != pairs[k].end()) {
-                      // Push pair to pairs
-                      // pairs.push_back({i, j});
-                        _found=true;
-                    }
-                  }
-                  if(!_found) pairs.push_back({i, j});
-                }
-            }
-        }
-    }
+    vector<vector<int>> pairs = findPairs(blobs);
     // Draw line between them
     for(int i = 0; i < pairs.size(); i++){
       ofDrawLine(blobs[pairs[i][0]].x, blobs[pairs[i][0]].y,
@@ -146,6 +122,36 @@ void Projector::keyPressed(int key){
         string out = ofSystemTextBoxDialog("Hi hows you?");
         cout << out << endl;
     }
+}
+
+vector<vector<int>> Projector::findPairs(vector<cv::Point3f> &blobs) {
+  vector<vector<int>> pairs;
+  for (int i = 0; i < blobs.size(); i++) {
+    for (int j = 0; j < blobs.size(); j++) {
+      if (i != j) {
+        float dist = ofDist(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
+        if (dist < 400) {
+          // ofDrawLine(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
+          // Loop over pairs
+          bool _found = false;
+          for (int k = 0; k < pairs.size(); k++) {
+            vector<int>::iterator iti, itj;
+            iti = find(pairs[k].begin(), pairs[k].end(), i);
+            itj = find(pairs[k].begin(), pairs[k].end(), j);
+            // Check pair has already been found
+            if (iti != pairs[k].end() && itj != pairs[k].end()) {
+              // Push pair to pairs
+              // pairs.push_back({i, j});
+              _found = true;
+            }
+          }
+          if (!_found)
+            pairs.push_back({i, j});
+        }
+      }
+    }
+  }
+  return pairs;
 }
 
 void Projector::mem(int x, int y){}
