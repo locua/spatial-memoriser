@@ -65,6 +65,7 @@ void Projector::draw(){
     //     }
     // }
 
+    // Find blob pairs
     vector<vector<int>> pairs;
     for (int i = 0; i < blobs.size();i++){
         for (int j = 0; j < blobs.size(); j++){
@@ -85,13 +86,12 @@ void Projector::draw(){
                         _found=true;
                     }
                   }
-                  if(_found==false)
-                      pairs.push_back({i, j});
-                  else{}
+                  if(!_found) pairs.push_back({i, j});
                 }
             }
         }
     }
+    // Draw line between them
     for(int i = 0; i < pairs.size(); i++){
       ofDrawLine(blobs[pairs[i][0]].x, blobs[pairs[i][0]].y,
                  blobs[pairs[i][1]].x, blobs[pairs[i][1]].y);
