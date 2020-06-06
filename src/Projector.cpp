@@ -27,14 +27,14 @@ void Projector::draw(){
 
     ofBackground(0);
     // Keep track of each blob for each color
-    // vector<vector<cv::Point2f>> blobs;
-    vector<cv::Point3f> blobs;
+    // vector<vector<cv::Point2f>> ss->blobs;
+    // vector<cv::Point3f> ss->blobs;
     // Loop over each colour
     for (int i = 0; i < ss->num_colours; i++) {
       // ss->contourFinders[i].draw();
       // Get tracking data and loop
       vector<cv::Rect> boundingRects = ss->contourFinders[i].getBoundingRects();
-      // vector<cv::Point2f> colour_blobs;
+      // vector<cv::Point2f> colour_ss->blobs;
       for (unsigned int j = 0; j < boundingRects.size(); j++) {
         cv::Point2f p_;
         cv::Point3f p__;
@@ -46,32 +46,58 @@ void Projector::draw(){
         p__.x = ofMap(p_.x, 0, ss->width_height.x, 0, 1920);
         p__.y = ofMap(p_.y, 0, ss->width_height.y, 0, 1080);
         p__.z=i;
-        blobs.push_back(p__);
+        ss->blobs.push_back(p__);
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
         ofSetLineWidth(3);
         // circle object
         // ofDrawCircle(p__.x, p__.y, 40);
       }
-      // blobs.push_back(colour_blobs);
+      // ss->blobs.push_back(colour_ss->blobs);
     }
 
-    // print blobs
+    // print ss->blobs
     // if(ss->find){
-    //     for(int i = 0; i < blobs.size(); i++){
-    //         cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
-    //         cout << ", color " << blobs[i].z << ", i " << i << "\n";
+    //     for(int i = 0; i < ss->blobs.size(); i++){
+    //         cout << "blob at: x " << ss->blobs[i].x << ", y " << ss->blobs[i].y;
+    //         cout << ", color " << ss->blobs[i].z << ", i " << i << "\n";
     //         // cout << "\n";
     //     }
     // }
 
     // Find blob pairs
-    vector<vector<int>> pairs = findPairs(blobs);
+    // vector<vector<int>> pairs = findPairs(ss->blobs);
+    // vector<vector<int>> pairs;
+    // for (int i = 0; i < ss->blobs.size(); i++) {
+    //   for (int j = 0; j < ss->blobs.size(); j++) {
+    //     if (i != j) {
+    //       float dist = ofDist(ss->blobs[i].x, ss->blobs[i].y, ss->blobs[j].x, ss->blobs[j].y);
+    //       if (dist < 400) {
+    //         // Loop over pairs
+    //         bool _found = false;
+    //         for (int k = 0; k < pairs.size(); k++) {
+    //           vector<int>::iterator iti, itj;
+    //           iti = find(pairs[k].begin(), pairs[k].end(), i);
+    //           itj = find(pairs[k].begin(), pairs[k].end(), j);
+    //           // Check pair has already been found
+    //           if (iti != pairs[k].end() && itj != pairs[k].end()) {
+    //             // Push pair to pairs
+    //             // pairs.push_back({i, j});
+    //             _found = true;
+    //           }
+    //         }
+    //         if (!_found)
+    //           pairs.push_back({i, j});
+    //       }
+    //     }
+    //   }
+    // }
+
     // Draw line between them
-    for(int i = 0; i < pairs.size(); i++){
-      ofDrawLine(blobs[pairs[i][0]].x, blobs[pairs[i][0]].y,
-                 blobs[pairs[i][1]].x, blobs[pairs[i][1]].y);
-    }
+    // for(int i = 0; i < pairs.size(); i++){
+    //   ofDrawLine(ss->blobs[pairs[i][0]].x, ss->blobs[pairs[i][0]].y,
+    //              ss->blobs[pairs[i][1]].x, ss->blobs[pairs[i][1]].y);
+    // }
 
 
 
@@ -131,7 +157,6 @@ vector<vector<int>> Projector::findPairs(vector<cv::Point3f> &blobs) {
       if (i != j) {
         float dist = ofDist(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
         if (dist < 400) {
-          // ofDrawLine(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
           // Loop over pairs
           bool _found = false;
           for (int k = 0; k < pairs.size(); k++) {

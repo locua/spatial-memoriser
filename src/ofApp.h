@@ -24,6 +24,7 @@ public:
     void saveSettings();
     void run_v4l2_commands();
     void change_exposure(int);
+    void colourCorrection();
     // CV variables
     ofVideoGrabber cam;
     ofColor targetColor1;

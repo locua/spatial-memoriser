@@ -122,9 +122,9 @@ void ofApp::setup() {
     ss->settings.popTag();
 
     //cam settings
-    ss->settings.pushTag("camSettings");
-    ss->exposure=ss->settings.getValue("exposure_absolute", 0);
-    ss->settings.popTag();
+    // ss->settings.pushTag("camSettings");
+    // ss->exposure=ss->settings.getValue("exposure_absolute", 0);
+    // ss->settings.popTag();
 
     // Bools for ???
     for(int i = 0; i < 4; i++){
@@ -447,6 +447,10 @@ void ofApp::mouseDragged(int x, int y, int button){
     if (whb) {
         ss->set_width_height(mouseX-ss->rectPos.x, mouseY-ss->rectPos.y);
     }
+}
+
+void ofApp::colourCorrection(){
+  // for(auto i = 0; i < ss->contourFinders[i].getCenter(j);)
 }
 
 //--------------------------------------------------------------

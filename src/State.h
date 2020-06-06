@@ -16,13 +16,16 @@ public:
         corners=false;
         chequer=false;
         find=false;
-        exposure=156;
+        exposure=624;
     }
     // cv vars
     int num_colours=5;
     vector<cv::Point2f> centers;
     vector<ofxCv::ContourFinder> contourFinders;
     vector<ofVec3f> proPoints;
+
+    // Blob stuff
+    vector<cv::Point3f> blobs;
 
     // set variable methods
     void setvx(int i, int val){
