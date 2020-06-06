@@ -274,6 +274,9 @@ void ofApp::draw() {
     }
     ofSetColor(255);
     font_1.drawString("Toggle keyboard shortcuts with 'k'", 240, 40);
+
+
+    ofDrawBitmapStringHighlight(ofToString((int) ofGetFrameRate()) + " fps", 10, 20);
 }
 
 //--------------------------------------------------------------
