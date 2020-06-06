@@ -1,6 +1,7 @@
 #include "Projector.h"
 #include "ofApp.h"
 #include <bits/stdc++.h>
+#include <algorithm>
 
 void Projector::setup() {
     // initialise variables
@@ -50,19 +51,53 @@ void Projector::draw(){
         // p_.y+=ss->rectPos.y;
         ofSetLineWidth(3);
         // circle object
-        ofDrawCircle(p__.x, p__.y, 40);
+        // ofDrawCircle(p__.x, p__.y, 40);
       }
       // blobs.push_back(colour_blobs);
     }
 
-    // cout << "\r";
-    if(ss->find){
-        for(int i = 0; i < blobs.size(); i++){
-            cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
-            cout << ", color " << blobs[i].z << ", i " << i << "\n";
-            // cout << "\n";
+    // print blobs
+    // if(ss->find){
+    //     for(int i = 0; i < blobs.size(); i++){
+    //         cout << "blob at: x " << blobs[i].x << ", y " << blobs[i].y;
+    //         cout << ", color " << blobs[i].z << ", i " << i << "\n";
+    //         // cout << "\n";
+    //     }
+    // }
+
+    vector<vector<int>> pairs;
+    for (int i = 0; i < blobs.size();i++){
+        for (int j = 0; j < blobs.size(); j++){
+            if(i!=j){
+                float dist = ofDist(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
+                if(dist<400){
+                  // ofDrawLine(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
+                  // Loop over pairs
+                  bool _found = false;
+                  for (int k = 0; k < pairs.size(); k++) {
+                    vector<int>::iterator iti, itj;
+                    iti = find(pairs[k].begin(), pairs[k].end(), i);
+                    itj = find(pairs[k].begin(), pairs[k].end(), j);
+                    // Check pair has already been found
+                    if (iti != pairs[k].end() && itj != pairs[k].end()) {
+                      // Push pair to pairs
+                      // pairs.push_back({i, j});
+                        _found=true;
+                    }
+                  }
+                  if(_found==false)
+                      pairs.push_back({i, j});
+                  else{}
+                }
+            }
         }
     }
+    for(int i = 0; i < pairs.size(); i++){
+      ofDrawLine(blobs[pairs[i][0]].x, blobs[pairs[i][0]].y,
+                 blobs[pairs[i][1]].x, blobs[pairs[i][1]].y);
+    }
+
+
 
     // Draw chequerboard if on
     ofFill();

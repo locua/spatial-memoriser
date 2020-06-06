@@ -27,7 +27,6 @@ void ofApp::setup() {
         }
     }
 
-
     // camera and window setup
     int camId = 0; // 1 = primary, 2 secondary
     int wwidth = 1920;
@@ -153,29 +152,36 @@ void ofApp::update() {
     // check new frame
     // cout << camPix.getWidth() << endl;
     // cout << camPix.getHeight() << endl;
-
-    // Check new frame  and ...
-    if(cam.isFrameNew()) {
-        // Loop for number of colours and track target colours
-        for(int i = 0; i < num_colours; i++){
-            // if finding: find // cv on / off
-            if(ss->find) ss->contourFinders[i].findContours(camPix);
-        }
-    }
-
     // cout << ofGetElapsedTimeMillis() << endl;
 
     // update parameters less: once a second
     // TODO: update only when GUI changed
-    if (ofGetElapsedTimeMillis() % 1000 == 0) {
-      for (int i = 0; i < num_colours; i++) {
+    // if (ofGetElapsedTimeMillis() % 1000 == 0) {
+      // for (int i = 0; i < num_colours; i++) {
         // Set contour finders with params
-        ss->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
-        ss->contourFinders[i].setThreshold(thresholds[i]);
-        ss->contourFinders[i].setMinArea(minareas[i]);
-        ss->contourFinders[i].setMaxArea(maxareas[i]);
-        ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
-        ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
+    //     ss->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
+    //     ss->contourFinders[i].setThreshold(thresholds[i]);
+    //     ss->contourFinders[i].setMinArea(minareas[i]);
+    //     ss->contourFinders[i].setMaxArea(maxareas[i]);
+    //     ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
+    //     ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
+    //   }
+    // }
+
+    // Check new frame  and ...
+    if (cam.isFrameNew()) {
+      // Loop for number of colours and track target colours
+      for (auto i = 0; i < num_colours; i++) {
+        // if finding: find // cv on / off
+        if (ss->find) {
+            ss->contourFinders[i].setTargetColor(targetColours[i], trackHues[i] ? TRACK_COLOR_HS : TRACK_COLOR_RGB);
+            ss->contourFinders[i].setThreshold(thresholds[i]);
+            ss->contourFinders[i].setMinArea(minareas[i]);
+            ss->contourFinders[i].setMaxArea(maxareas[i]);
+            ss->contourFinders[i].setMinAreaRadius(minAreaRadi[i]);
+            ss->contourFinders[i].setMaxAreaRadius(maxAreaRadi[i]);
+            ss->contourFinders[i].findContours(camPix);
+        }
       }
     }
 }
@@ -248,7 +254,7 @@ void ofApp::draw() {
     // Draw instructions
     if(shortcuts){
         ofSetColor(50, 130);
-        ofDrawRectangle(45, 720, 600, 260);
+        ofDrawRectangle(45, 720, 600, 290);
         ofSetColor(255);
         font_1.drawString(R"(Keyboard Shortcuts:
 - Toggle tracking with =t=
@@ -256,10 +262,11 @@ void ofApp::draw() {
 - Toggle chequerboard on projection window with =C= key
   - Useful for keystone calibration
 - Reset camera settings to default with =r=
+  - Only works if v4l2-ctl is installed
 - Toggle zoom mode with =z=
   - Doesn't work in a useful way
 - Increment and decrement exposure with =+= and =-=
-  - Only works if v4l2-ctl is installed 
+  - Only works if v4l2-ctl is installed
 - Toggle fullscreen with =f=
 - Save settings with =s=
     )",
@@ -382,7 +389,7 @@ void ofApp::run_v4l2_commands(){
     string cm2 = "v4l2-ctl -d2 -c focus_absolute=0";
     string cm3 = "v4l2-ctl -d2 -c exposure_auto=1";
     string cm4 = "v4l2-ctl -d2 -c white_balance_temperature_auto=0";
-    string cm5 = "v4l2-ctl -d2 -c exposure_absolute=278";
+    string cm5 = "v4l2-ctl -d2 -c exposure_absolute=624";
     string cm6 = "v4l2-ctl -d2 -c exposure_auto_priority=0";
     string cm7 = "v4l2-ctl -d2 -c white_balance_temperature=3755";
     vector<string> commands = {cm1, cm2, cm3, cm4, cm5, cm6, cm7};

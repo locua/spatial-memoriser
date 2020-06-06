@@ -6,11 +6,11 @@
         <maxAreaRadius>16</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>181</r>
-            <g>157</g>
-            <b>103</b>
+            <r>20</r>
+            <g>105</g>
+            <b>107</b>
         </threshold>
-        <thresh>29.000000000</thresh>
+        <thresh>36.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -20,10 +20,10 @@
         <trackHue>0</trackHue>
         <threshold>
             <r>0</r>
-            <g>180</g>
-            <b>255</b>
+            <g>107</g>
+            <b>190</b>
         </threshold>
-        <thresh>255.000000000</thresh>
+        <thresh>33.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -32,11 +32,11 @@
         <maxAreaRadius>21</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>51</r>
-            <g>153</g>
-            <b>151</b>
+            <r>172</r>
+            <g>9</g>
+            <b>34</b>
         </threshold>
-        <thresh>255.000000000</thresh>
+        <thresh>44.234695435</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -45,11 +45,11 @@
         <maxAreaRadius>17</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>237</r>
-            <g>2</g>
-            <b>62</b>
+            <r>195</r>
+            <g>177</g>
+            <b>123</b>
         </threshold>
-        <thresh>255.000000000</thresh>
+        <thresh>76.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -58,9 +58,9 @@
         <maxAreaRadius>17</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>16</r>
-            <g>22</g>
-            <b>48</b>
+            <r>6</r>
+            <g>10</g>
+            <b>23</b>
         </threshold>
         <thresh>255.000000000</thresh>
     </contourFinder>
