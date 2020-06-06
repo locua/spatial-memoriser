@@ -6,11 +6,11 @@
         <maxAreaRadius>16</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>34</r>
-            <g>83</g>
-            <b>73</b>
+            <r>50</r>
+            <g>101</g>
+            <b>91</b>
         </threshold>
-        <thresh>36.000000000</thresh>
+        <thresh>29.923469543</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -19,11 +19,11 @@
         <maxAreaRadius>20</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>8</r>
-            <g>78</g>
-            <b>137</b>
+            <r>14</r>
+            <g>103</g>
+            <b>157</b>
         </threshold>
-        <thresh>35.000000000</thresh>
+        <thresh>18.214286804</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -32,11 +32,11 @@
         <maxAreaRadius>21</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>242</r>
-            <g>19</g>
-            <b>73</b>
+            <r>200</r>
+            <g>5</g>
+            <b>27</b>
         </threshold>
-        <thresh>52.000000000</thresh>
+        <thresh>16.000000000</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -45,11 +45,11 @@
         <maxAreaRadius>17</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>205</r>
-            <g>172</g>
-            <b>105</b>
+            <r>234</r>
+            <g>205</g>
+            <b>159</b>
         </threshold>
-        <thresh>40.000000000</thresh>
+        <thresh>23.418367386</thresh>
     </contourFinder>
     <contourFinder>
         <minArea>0</minArea>
@@ -58,9 +58,9 @@
         <maxAreaRadius>17</maxAreaRadius>
         <trackHue>0</trackHue>
         <threshold>
-            <r>159</r>
-            <g>4</g>
-            <b>19</b>
+            <r>20</r>
+            <g>11</g>
+            <b>23</b>
         </threshold>
         <thresh>255.000000000</thresh>
     </contourFinder>

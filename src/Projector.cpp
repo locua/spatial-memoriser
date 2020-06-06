@@ -27,8 +27,7 @@ void Projector::draw(){
 
     ofBackground(0);
     // Keep track of each blob for each color
-    // vector<vector<cv::Point2f>> ss->blobs;
-    // vector<cv::Point3f> ss->blobs;
+    vector<cv::Point3f> blobs;
     // Loop over each colour
     for (int i = 0; i < ss->num_colours; i++) {
       // ss->contourFinders[i].draw();
@@ -46,7 +45,7 @@ void Projector::draw(){
         p__.x = ofMap(p_.x, 0, ss->width_height.x, 0, 1920);
         p__.y = ofMap(p_.y, 0, ss->width_height.y, 0, 1080);
         p__.z=i;
-        ss->blobs.push_back(p__);
+        blobs.push_back(p__);
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
         ofSetLineWidth(3);
@@ -67,39 +66,37 @@ void Projector::draw(){
 
     // Find blob pairs
     // vector<vector<int>> pairs = findPairs(ss->blobs);
-    // vector<vector<int>> pairs;
-    // for (int i = 0; i < ss->blobs.size(); i++) {
-    //   for (int j = 0; j < ss->blobs.size(); j++) {
-    //     if (i != j) {
-    //       float dist = ofDist(ss->blobs[i].x, ss->blobs[i].y, ss->blobs[j].x, ss->blobs[j].y);
-    //       if (dist < 400) {
-    //         // Loop over pairs
-    //         bool _found = false;
-    //         for (int k = 0; k < pairs.size(); k++) {
-    //           vector<int>::iterator iti, itj;
-    //           iti = find(pairs[k].begin(), pairs[k].end(), i);
-    //           itj = find(pairs[k].begin(), pairs[k].end(), j);
-    //           // Check pair has already been found
-    //           if (iti != pairs[k].end() && itj != pairs[k].end()) {
-    //             // Push pair to pairs
-    //             // pairs.push_back({i, j});
-    //             _found = true;
-    //           }
-    //         }
-    //         if (!_found)
-    //           pairs.push_back({i, j});
-    //       }
-    //     }
-    //   }
-    // }
+    vector<vector<int>> pairs;
+    for (int i = 0; i < blobs.size(); i++) {
+      for (int j = 0; j < blobs.size(); j++) {
+        if (i != j) {
+          float dist = ofDist(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
+          if (dist < 400) {
+            // Loop over pairs
+            bool _found = false;
+            for (int k = 0; k < pairs.size(); k++) {
+              vector<int>::iterator iti, itj;
+              iti = find(pairs[k].begin(), pairs[k].end(), i);
+              itj = find(pairs[k].begin(), pairs[k].end(), j);
+              // Check pair has already been found
+              if (iti != pairs[k].end() && itj != pairs[k].end()) {
+                // Push pair to pairs
+                // pairs.push_back({i, j});
+                _found = true;
+              }
+            }
+            if (!_found)
+              pairs.push_back({i, j});
+          }
+        }
+      }
+    }
 
     // Draw line between them
-    // for(int i = 0; i < pairs.size(); i++){
-    //   ofDrawLine(ss->blobs[pairs[i][0]].x, ss->blobs[pairs[i][0]].y,
-    //              ss->blobs[pairs[i][1]].x, ss->blobs[pairs[i][1]].y);
-    // }
-
-
+    for(int i = 0; i < pairs.size(); i++){
+      ofDrawLine(blobs[pairs[i][0]].x,blobs[pairs[i][0]].y,
+                 blobs[pairs[i][1]].x, blobs[pairs[i][1]].y);
+    }
 
     // Draw chequerboard if on
     ofFill();
