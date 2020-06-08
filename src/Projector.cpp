@@ -30,29 +30,23 @@ void Projector::draw(){
     vector<cv::Point3f> blobs;
     // Loop over each colour
     for (int i = 0; i < ss->num_colours; i++) {
-      // ss->contourFinders[i].draw();
       // Get tracking data and loop
-      vector<cv::Rect> boundingRects = ss->contourFinders[i].getBoundingRects();
-      // vector<cv::Point2f> colour_ss->blobs;
-      for (unsigned int j = 0; j < boundingRects.size(); j++) {
+      for (auto j = 0; j < ss->contourFinders[i].getBoundingRects().size(); j++) {
         cv::Point2f p_;
         cv::Point3f p__;
         // Get centre of blob
         p_ = ss->contourFinders[i].getCenter(j);
-        ofSetColor(255, 200, 255);
-        ofNoFill();
         // map cropped camera to window
-        p__.x = ofMap(p_.x, 0, ss->width_height.x, 0, 1920);
-        p__.y = ofMap(p_.y, 0, ss->width_height.y, 0, 1080);
+        p__.x = ofMap(p_.x, 0, ss->width_height.x, 0, mw);
+        p__.y = ofMap(p_.y, 0, ss->width_height.y, 0, mh);
         p__.z=i;
         blobs.push_back(p__);
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
-        ofSetLineWidth(3);
+        // ofSetLineWidth(3);
         // circle object
         // ofDrawCircle(p__.x, p__.y, 40);
       }
-      // ss->blobs.push_back(colour_ss->blobs);
     }
 
     // print ss->blobs
@@ -147,6 +141,7 @@ void Projector::keyPressed(int key){
     }
 }
 
+// Currently very slow // O(k*n^2)
 vector<vector<int>> Projector::findPairs(vector<cv::Point3f> &blobs) {
   vector<vector<int>> pairs;
   for (int i = 0; i < blobs.size(); i++) {
