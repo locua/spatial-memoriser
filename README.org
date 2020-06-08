@@ -39,7 +39,8 @@ either window to toggle fullscreen.
 - Save settings with =s=
 
 * Troubleshooting
-
+Depending on your relative projector and camera orientation you may need to flip
+your display in your computer display settings so that it will track properly.
 * Schema
 
 [[file:imgs/project-schema-final.png]]
