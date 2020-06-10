@@ -48,24 +48,24 @@ void Projector::draw(){
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
         // circle object
-        ofSetLineWidth(3);
-        ofNoFill();
-        ofDrawCircle(p__.x, p__.y, 30);
       }
     }
-
     // Test blob
     // cv::Point3f _p;
-    // _p.x = 200;
-    // _p.y = 400;
+    // _p.x = mouseX;
+    // _p.y = mouseY;
     // _p.z = 0;
     // ss->blobs.push_back(_p);
 
     // Draw ids of blobs
     for(auto i = 0; i < ss->blobs.size(); i++){
-        ofDrawBitmapStringHighlight(ofToString(i), ss->blobs[i].x - 30, ss->blobs[i].y + 30);
+      ofSetLineWidth(3);
+      ofNoFill();
+      ofDrawCircle(ss->blobs[i].x, ss->blobs[i].y, 30);
+      ofDrawBitmapString(ofToString(i), ss->blobs[i].x - 30,
+                         ss->blobs[i].y + 30);
     }
-    // Draw any messages
+    // Draw any input text
     for(auto j= 0; j < mapi.size(); j++){
         int id = mapi[j];
         string message = maps[j][id];
@@ -73,37 +73,38 @@ void Projector::draw(){
     }
 
     // Find blob pairs
+    // Current disabled with findpairs set to FALSE
     if(findpairs){
-    vector<vector<int>> pairs;
-    for (int i = 0; i < ss->blobs.size(); i++) {
-      for (int j = 0; j < ss->blobs.size(); j++) {
-        if (i != j) {
-          float dist = ofDist(ss->blobs[i].x, ss->blobs[i].y, ss->blobs[j].x, ss->blobs[j].y);
-          if (dist < 400) {
-            // Loop over pairs
-            bool _found = false;
-            for (int k = 0; k < pairs.size(); k++) {
-              vector<int>::iterator iti, itj;
-              iti = find(pairs[k].begin(), pairs[k].end(), i);
-              itj = find(pairs[k].begin(), pairs[k].end(), j);
-              // Check pair has already been found
-              if (iti != pairs[k].end() && itj != pairs[k].end()) {
-                // Push pair to pairs
-                // pairs.push_back({i, j});
-                _found = true;
-              }
+        vector<vector<int>> pairs;
+        for (int i = 0; i < ss->blobs.size(); i++) {
+            for (int j = 0; j < ss->blobs.size(); j++) {
+                if (i != j) {
+                    float dist = ofDist(ss->blobs[i].x, ss->blobs[i].y, ss->blobs[j].x, ss->blobs[j].y);
+                    if (dist < 400) {
+                        // Loop over pairs
+                        bool _found = false;
+                        for (int k = 0; k < pairs.size(); k++) {
+                            vector<int>::iterator iti, itj;
+                            iti = find(pairs[k].begin(), pairs[k].end(), i);
+                            itj = find(pairs[k].begin(), pairs[k].end(), j);
+                            // Check pair has already been found
+                            if (iti != pairs[k].end() && itj != pairs[k].end()) {
+                                // Push pair to pairs
+                                // pairs.push_back({i, j});
+                                _found = true;
+                            }
+                        }
+                        if (!_found)
+                            pairs.push_back({i, j});
+                    }
+                }
             }
-            if (!_found)
-              pairs.push_back({i, j});
-          }
         }
-      }
-    }
-    // Draw line between them
-    for (int i = 0; i < pairs.size(); i++) {
-        ofDrawLine(ss->blobs[pairs[i][0]].x, ss->blobs[pairs[i][0]].y,
-                   ss->blobs[pairs[i][1]].x, ss->blobs[pairs[i][1]].y);
-    }
+        // Draw line between them
+        for (int i = 0; i < pairs.size(); i++) {
+            ofDrawLine(ss->blobs[pairs[i][0]].x, ss->blobs[pairs[i][0]].y,
+                       ss->blobs[pairs[i][1]].x, ss->blobs[pairs[i][1]].y);
+        }
     }
 
     // Draw chequerboard if on
@@ -152,7 +153,8 @@ void Projector::keyPressed(int key){
     if(key=='t'){
         string out = ofSystemTextBoxDialog("Enter some text:");
         // cout << out << endl;
-        int blobid = stoi(ofSystemTextBoxDialog("Enter blob number:"));
+        string idstring = ofSystemTextBoxDialog("Enter blob number:");
+        int blobid = stoi(idstring);
         map<int, string> tmpmap;
         tmpmap[blobid] = out;
         // cout << tmpmap[blobid] << endl;
