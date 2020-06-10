@@ -52,6 +52,7 @@ public:
 
     // cam stuff
     int exposure;
+
 };
 
 #endif

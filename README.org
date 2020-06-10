@@ -26,6 +26,7 @@ int camId = 0; // Change this variable to the correct id
 All these shortcuts are run on the GUI window. Except =f= which can be run on
 either window to toggle fullscreen.
 
+- Toggle keyboard shortcuts with =k=
 - Toggle tracking with =t=
 - Toggle corners on projection window with =c= key
 - Toggle chequerboard on projection window with =C= key
@@ -40,7 +41,8 @@ either window to toggle fullscreen.
 
 * Troubleshooting
 Depending on your relative projector and camera orientation you may need to flip
-your display in your computer display settings so that it will track properly.
+your display, for the projector, in your computer display settings so that it
+will track properly.
 * Schema
 
 [[file:imgs/project-schema-final.png]]

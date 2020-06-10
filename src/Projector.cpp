@@ -27,7 +27,7 @@ void Projector::draw(){
 
     ofBackground(0);
     // Keep track of each blob for each color
-    vector<cv::Point3f> blobs;
+    ss->blobs={};
     // Loop over each colour
     for (int i = 0; i < ss->num_colours; i++) {
       // Get tracking data and loop
@@ -40,7 +40,7 @@ void Projector::draw(){
         p__.x = ofMap(p_.x, 0, ss->width_height.x, 0, mw);
         p__.y = ofMap(p_.y, 0, ss->width_height.y, 0, mh);
         p__.z=i;
-        blobs.push_back(p__);
+        ss->blobs.push_back(p__);
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
         // ofSetLineWidth(3);
@@ -61,10 +61,10 @@ void Projector::draw(){
     // Find blob pairs
     // vector<vector<int>> pairs = findPairs(ss->blobs);
     vector<vector<int>> pairs;
-    for (int i = 0; i < blobs.size(); i++) {
-      for (int j = 0; j < blobs.size(); j++) {
+    for (int i = 0; i < ss->blobs.size(); i++) {
+      for (int j = 0; j < ss->blobs.size(); j++) {
         if (i != j) {
-          float dist = ofDist(blobs[i].x, blobs[i].y, blobs[j].x, blobs[j].y);
+          float dist = ofDist(ss->blobs[i].x, ss->blobs[i].y, ss->blobs[j].x, ss->blobs[j].y);
           if (dist < 400) {
             // Loop over pairs
             bool _found = false;
@@ -88,8 +88,8 @@ void Projector::draw(){
 
     // Draw line between them
     for(int i = 0; i < pairs.size(); i++){
-      ofDrawLine(blobs[pairs[i][0]].x,blobs[pairs[i][0]].y,
-                 blobs[pairs[i][1]].x, blobs[pairs[i][1]].y);
+      ofDrawLine(ss->blobs[pairs[i][0]].x,ss->blobs[pairs[i][0]].y,
+                 ss->blobs[pairs[i][1]].x, ss->blobs[pairs[i][1]].y);
     }
 
     // Draw chequerboard if on
