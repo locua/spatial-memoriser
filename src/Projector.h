@@ -26,4 +26,7 @@ class Projector: public ofBaseApp {
     shared_ptr<State> ss;
     int mw, mh, inc;
 
+    vector<string> messages;
+    bool printblobs, findpairs;
+
 };

@@ -11,9 +11,20 @@ void Projector::setup() {
     // initialise width and height
     mw = ofGetWidth();
     mh = ofGetHeight();
+    printblobs=false;
+    findpairs=false;
 }
 
 void Projector::update(){
+  // print blob data
+  if(ss->find && printblobs){
+      for(int i = 0; i < ss->blobs.size(); i++){
+          cout << "blob at: x " << ss->blobs[i].x << ", y " <<
+          ss->blobs[i].y; cout << ", color " << ss->blobs[i].z << ", i " << i
+          << "\n";
+          // cout << "\n";
+      }
+  }
 }
 
 void Projector::draw(){
@@ -43,23 +54,19 @@ void Projector::draw(){
         ss->blobs.push_back(p__);
         // p_.x+=ss->rectPos.x;
         // p_.y+=ss->rectPos.y;
-        // ofSetLineWidth(3);
         // circle object
-        // ofDrawCircle(p__.x, p__.y, 40);
+        ofSetLineWidth(3);
+        ofNoFill();
+        ofDrawCircle(p__.x, p__.y, 40);
       }
     }
+    for(auto i = 0; i < ss->blobs.size(); i++){
+        ofDrawBitmapStringHighlight(ofToString(i), ss->blobs[i].x - 30, ss->blobs[i].y + 30);
+    }
 
-    // print ss->blobs
-    // if(ss->find){
-    //     for(int i = 0; i < ss->blobs.size(); i++){
-    //         cout << "blob at: x " << ss->blobs[i].x << ", y " << ss->blobs[i].y;
-    //         cout << ", color " << ss->blobs[i].z << ", i " << i << "\n";
-    //         // cout << "\n";
-    //     }
-    // }
 
     // Find blob pairs
-    // vector<vector<int>> pairs = findPairs(ss->blobs);
+    if(findpairs){
     vector<vector<int>> pairs;
     for (int i = 0; i < ss->blobs.size(); i++) {
       for (int j = 0; j < ss->blobs.size(); j++) {
@@ -85,11 +92,11 @@ void Projector::draw(){
         }
       }
     }
-
     // Draw line between them
-    for(int i = 0; i < pairs.size(); i++){
-      ofDrawLine(ss->blobs[pairs[i][0]].x,ss->blobs[pairs[i][0]].y,
-                 ss->blobs[pairs[i][1]].x, ss->blobs[pairs[i][1]].y);
+    for (int i = 0; i < pairs.size(); i++) {
+        ofDrawLine(ss->blobs[pairs[i][0]].x, ss->blobs[pairs[i][0]].y,
+                   ss->blobs[pairs[i][1]].x, ss->blobs[pairs[i][1]].y);
+    }
     }
 
     // Draw chequerboard if on
@@ -136,8 +143,10 @@ void Projector::keyPressed(int key){
     }
     // testing text dialog
     if(key=='t'){
-        string out = ofSystemTextBoxDialog("Hi hows you?");
+        string out = ofSystemTextBoxDialog("Enter some text:");
         cout << out << endl;
+        messages.push_back(out);
+        string blobid = ofSystemTextBoxDialog("Enter blob number:");
     }
 }
 
