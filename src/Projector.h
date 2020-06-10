@@ -1,7 +1,8 @@
 #pragma once
 
-#include "ofMain.h"
 #include "State.h"
+#include "ofMain.h"
+#include <map>
 
 class Projector: public ofBaseApp {
 
@@ -26,7 +27,8 @@ class Projector: public ofBaseApp {
     shared_ptr<State> ss;
     int mw, mh, inc;
 
-    vector<string> messages;
+    vector<int> mapi;
+    vector<map<int, string>> maps;
     bool printblobs, findpairs;
 
 };

@@ -29,13 +29,6 @@ void Projector::update(){
 
 void Projector::draw(){
 
-    // bool flip=true;
-    // if (flip){
-    //     ofPushMatrix();
-    //     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
-    //     ofRotateDeg(180, 0,0,1);
-    // }
-
     ofBackground(0);
     // Keep track of each blob for each color
     ss->blobs={};
@@ -57,13 +50,27 @@ void Projector::draw(){
         // circle object
         ofSetLineWidth(3);
         ofNoFill();
-        ofDrawCircle(p__.x, p__.y, 40);
+        ofDrawCircle(p__.x, p__.y, 30);
       }
     }
+
+    // Test blob
+    // cv::Point3f _p;
+    // _p.x = 200;
+    // _p.y = 400;
+    // _p.z = 0;
+    // ss->blobs.push_back(_p);
+
+    // Draw ids of blobs
     for(auto i = 0; i < ss->blobs.size(); i++){
         ofDrawBitmapStringHighlight(ofToString(i), ss->blobs[i].x - 30, ss->blobs[i].y + 30);
     }
-
+    // Draw any messages
+    for(auto j= 0; j < mapi.size(); j++){
+        int id = mapi[j];
+        string message = maps[j][id];
+        ofDrawBitmapStringHighlight(message, ss->blobs[id].x + 30, ss->blobs[id].y + 30);
+    }
 
     // Find blob pairs
     if(findpairs){
@@ -144,9 +151,13 @@ void Projector::keyPressed(int key){
     // testing text dialog
     if(key=='t'){
         string out = ofSystemTextBoxDialog("Enter some text:");
-        cout << out << endl;
-        messages.push_back(out);
-        string blobid = ofSystemTextBoxDialog("Enter blob number:");
+        // cout << out << endl;
+        int blobid = stoi(ofSystemTextBoxDialog("Enter blob number:"));
+        map<int, string> tmpmap;
+        tmpmap[blobid] = out;
+        // cout << tmpmap[blobid] << endl;
+        maps.push_back(tmpmap);
+        mapi.push_back(blobid);
     }
 }
 
