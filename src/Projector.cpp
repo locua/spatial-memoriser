@@ -161,7 +161,8 @@ void Projector::keyPressed(int key){
         // Sanitize by removing anything non alphanumeric from the idstring
         idstring = std::regex_replace(idstring, std::regex(R"([\D])"), "");
         // convert to int
-        int blobid = stoi(idstring);
+        int blobid=-1;
+        if(!idstring.empty()) blobid = stoi(idstring);
         // If blob exists store map and id
         if(blobid<ss->blobs.size() && blobid >= 0){
           map<int, string> tmpmap;
