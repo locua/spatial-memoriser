@@ -2,6 +2,7 @@
 #include "ofApp.h"
 #include <bits/stdc++.h>
 #include <algorithm>
+#include <regex>
 
 void Projector::setup() {
     // initialise variables
@@ -69,7 +70,9 @@ void Projector::draw(){
     for(auto j= 0; j < mapi.size(); j++){
         int id = mapi[j];
         string message = maps[j][id];
-        ofDrawBitmapStringHighlight(message, ss->blobs[id].x + 30, ss->blobs[id].y + 30);
+        // Check blob exists to avoid seg fault
+        if(id < ss->blobs.size() && id >= 0)
+            ofDrawBitmapStringHighlight(message, ss->blobs[id].x + 30, ss->blobs[id].y + 30);
     }
 
     // Find blob pairs
@@ -151,15 +154,25 @@ void Projector::keyPressed(int key){
     }
     // testing text dialog
     if(key=='t'){
+        // Text dialog for input text
         string out = ofSystemTextBoxDialog("Enter some text:");
-        // cout << out << endl;
+        // Text dialog for blob id number
         string idstring = ofSystemTextBoxDialog("Enter blob number:");
+        // Sanitize by removing anything non alphanumeric from the idstring
+        idstring = std::regex_replace(idstring, std::regex(R"([\D])"), "");
+        // convert to int
         int blobid = stoi(idstring);
-        map<int, string> tmpmap;
-        tmpmap[blobid] = out;
-        // cout << tmpmap[blobid] << endl;
-        maps.push_back(tmpmap);
-        mapi.push_back(blobid);
+        // If blob exists store map and id
+        if(blobid<ss->blobs.size() && blobid >= 0){
+          map<int, string> tmpmap;
+          tmpmap[blobid] = out;
+          // cout << tmpmap[blobid] << endl;
+          maps.push_back(tmpmap);
+          mapi.push_back(blobid);
+        } else {
+            ofSystemAlertDialog("Blob does not exist");
+            cout << "Blob does not exist\n";
+        }
     }
 }
 
