@@ -12,9 +12,8 @@ ofApp::~ofApp(){
 void ofApp::setup() {
     // Welcome message
     cout << "------------------------------------------------------------------------------" << endl;
-    cout << "--------------------------- Welcome ------------------------------------------" << endl;
+    cout << "--------------------------------- Welcome ------------------------------------" << endl;
     cout << "------------------------------------------------------------------------------" << endl;
-
     // list video devices with ids
     vector<ofVideoDevice> devices = cam.listDevices();
     for(size_t i = 0; i < devices.size(); i++){
@@ -26,22 +25,18 @@ void ofApp::setup() {
             ofLogNotice() << devices[i].id << ": " << devices[i].deviceName << " - unavailable ";
         }
     }
-
     // camera and window setup
     int camId = 0; // 1 = primary, 2 secondary
     int wwidth = 1920;
     int wheight = 1080;
     zoom=false;
     ofSetWindowShape(wwidth, wheight);
-
     // Select camera
     cam.setDeviceID(camId);
     cam.setup(1920, 1080);
 
-    // alternative camera settings for different cams
-    // Alternative cam setup ( in built camera )
-    // cam.setup(640, 480);
-
+    // Alternative cam setup (for in built camera )
+    // cam.setup(640, 480)
 
     // Initialise gui and parameters
     gui.setup();
@@ -342,8 +337,8 @@ void ofApp::keyPressed(int key) {
   }
 
   // increment or decrement exposure
-  if(key=='+') change_exposure(1);
-  if(key=='-') change_exposure(-1);
+  if(key=='+') change_exposure(100);
+  if(key=='-') change_exposure(-100);
 
   // Toggle fullscreen with f key
   if (key == 'f') {

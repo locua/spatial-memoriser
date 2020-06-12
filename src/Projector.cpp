@@ -14,6 +14,7 @@ void Projector::setup() {
     mh = ofGetHeight();
     printblobs=false;
     findpairs=false;
+    font.load("SourceCodePro-MediumIt.ttf", 14);
 }
 
 void Projector::update(){
@@ -51,20 +52,14 @@ void Projector::draw(){
         // circle object
       }
     }
-    // Test blob
-    // cv::Point3f _p;
-    // _p.x = mouseX;
-    // _p.y = mouseY;
-    // _p.z = 0;
-    // ss->blobs.push_back(_p);
-
     // Draw ids of blobs
     for(auto i = 0; i < ss->blobs.size(); i++){
-      ofSetLineWidth(3);
+      ofSetLineWidth(1);
       ofNoFill();
-      ofDrawCircle(ss->blobs[i].x, ss->blobs[i].y, 30);
-      ofDrawBitmapString(ofToString(i), ss->blobs[i].x - 30,
-                         ss->blobs[i].y + 30);
+      ofDrawCircle(ss->blobs[i].x, ss->blobs[i].y, 25);
+      // ofDrawBitmapString(ofToString(i), ss->blobs[i].x - 30,
+      //                    ss->blobs[i].y + 30);
+      font.drawString(ofToString(i), ss->blobs[i].x - 40, ss->blobs[i].y + 30);
     }
     // Draw any input text
     for(auto j= 0; j < mapi.size(); j++){
@@ -72,7 +67,9 @@ void Projector::draw(){
         string message = maps[j][id];
         // Check blob exists to avoid seg fault
         if(id < ss->blobs.size() && id >= 0)
-            ofDrawBitmapStringHighlight(message, ss->blobs[id].x + 30, ss->blobs[id].y + 30);
+            font.drawString(message, ss->blobs[id].x + 40, ss->blobs[id].y + 30);
+        // ofDrawBitmapStringHighlight(message, ss->blobs[id].x + 30,
+        // ss->blobs[id].y + 30);
     }
 
     // Find blob pairs

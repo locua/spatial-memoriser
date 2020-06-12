@@ -30,5 +30,6 @@ class Projector: public ofBaseApp {
     vector<int> mapi;
     vector<map<int, string>> maps;
     bool printblobs, findpairs;
+    ofTrueTypeFont font;
 
 };
